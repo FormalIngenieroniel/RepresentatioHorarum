@@ -1,0 +1,303 @@
+\section{Estado Inicial de los Datos}
+
+\subsection{Origen y propósito de los Datos}
+
+Luego de realizar la búsqueda exhaustiva que se menciona en la delimitación del problema, se encuentra que los candidatos ideales se redujeron a 3. Estos datasets se encuentran representados en los lenguajes de señas, inglés, indio y ruso.\vspace{0.5cm}\par
+
+En primera estancia, con el desarrollo del proyecto se utilizó el conjunto de datos en Inglés, WLASL (Por sus siglas Word-Level American Sign Language). Así mismo, este conjunto de datos se considera que es actualmente el mayor repositorio de videos disponible públicamente para el reconocimiento de palabras individuales en el Lenguaje de Señas Americano (ASL) además de contener un vocabulario con 2,000 señas comunes\autocite{WLASL2020}.\vspace{0.5cm}\par
+
+Por otro lado, el propósito más importante detrás de la creación del Dataset WLASL fue el facilitar la investigación en el campo de la comprensión del lenguaje de señas. Teniendo en cuenta lo anterior, se buscó desarrollar tecnologías que eventualmente pudieran mejorar la comunicación entre las comunidades sordas y también las oyentes, queriendo responder a la necesidad de herramientas más precisas para el reconocimiento y traducción de señas.\vspace{0.5cm}\par
+
+A la hora de realizar la recolección de los datos, estos fueron recopilados de dos fuentes principales de internet, siendo la primera de estas, sitios web educativos, donde se extrajeron videos especializados en lenguaje de señas, como ASLU y ASL-LEX. La segunda fuente consistió en videos tutoriales de la plataforma YouTube, seleccionando solo los videos con títulos que describían de manera explícita y clara la seña mostrada\autocite{KaggleWLASL2025}.\vspace{0.5cm}\par
+
+Por último, en la recolección de los datos, para poder asegurar que el conjunto de datos se enfocara exclusivamente en palabras individuales, se aplicó un criterio de filtrado estricto. El cual consistió en el descarte de todos los videos en los que la etiqueta o anotación de la seña estuviera compuesta por más de dos palabras en inglés.\vspace{0.5cm}\par
+
+Es importante hacer la aclaración que el conjunto de datos WLASL fue desarrollado por Dongxu Li y Hongdong Li. Se especifica que su uso está restringido a fines académicos y computacionales, prohibiéndose de esta manera cualquier tipo de explotación comercial, el dataset se distribuye bajo la licencia Computational Use of Data Agreement (C-UDA).\vspace{0.5cm}\par
+
+Por otro lado, el siguiente se denomina INCLUDE Indian Lexicon Sign Language Dataset. Este conjunto de datos fue desarrollado para abordar la carencia de un dataset público y estandarizado de Lenguaje de Señas Indio (ISL), lengua que es utilizada por más de 5 millones de personas sordas en India\autocite{Sridhar2020}. Donde el objetivo principal de su creación fue proporcionar un recurso robusto para poder entrenar y evaluar diferentes modelos de Reconocimiento de Lenguaje de Señas (SLR).\vspace{0.5cm}\par
+
+Además, el dataset fue creado influenciado por la iniciativa AI4Bharat y también se detalla en su publicación académica que  para hacer la recopilación de los videos se contó con la colaboración de estudiantes sordos de la St. Louis School for the Deaf en Adyar, Chennai, quienes son intérpretes experimentados, garantizando de esta manera que las señas grabadas se asemejen a las condiciones de comunicación que se tienen en el día a día.\vspace{0.5cm}\par
+
+No obstante, el conjunto de datos completo está conformado por un total de 4,292 videos, los cuales abarcan 263 señas de palabras distintas que pertenecen a 15 categorías diferentes, donde cada video muestra la acción de una única seña.\vspace{0.5cm}\par
+
+En última estancia se tiene el dataset SLOVO, el cual es un repositorio de videos a gran escala que está enfocado en el Lenguaje de Señas Ruso (RSL). Por otro lado, sus creadores alegan que el origen del dataset surge de la necesidad de contar con recursos específicos para cada lengua de señas, ya que estas varían significativamente entre países, y a la dificultad general de recopilar este tipo de datos\autocite{Kapitanov2023}.\vspace{0.5cm}\par
+
+Por esto mismo es que el dataset contiene 20,400 videos que representan 1,000 gestos o señas distintas, las cuales están interpretadas por un total de 194 intérpretes. Por esta razón, el tamaño total del conjunto de datos es de aproximadamente 16 GB, con una duración acumulada de video de 9.2 horas donde la calidad de las grabaciones es alta, al tener un 65\% de los videos en resolución FullHD y el resto en HD.
+
+\subsection{Estructuración Original de los Datos}
+
+Teniendo más claro el origen y motivo detrás de cada conjunto de datos, se analiza a mayor escala la estructura de cada uno de estos, al estar almacenados, grabados y etiquetados de diferentes maneras.\vspace{0.5cm}\par
+
+El dataset WLASL viene organizado de la siguiente manera, hay una carpeta que contiene todos los videos, donde cada video tiene su id en el nombre. Un archivo JSON el cual contiene toda la información relacionada de cada video, como lo puede ser la etiqueta, número de frames, entre otros datos. Un archivo de texto que contiene los id´s de los videos que no están asociados a alguna etiqueta. Otro archivo TXT que contiene todas las etiquetas que existen en el dataset.\vspace{0.5cm}\par
+
+Sin embargo, el dataset INCLUDE - ISL está estructurado de una manera diferente, está compuesto por diferentes carpetas anidadas donde se divide según el tipo de palabra o la categoría a la que puede pertenecer. Por ejemplo, la carpeta \enquote{adjetivos\_1de5} contiene otra carpeta llamada \enquote{Adjetivos} que a su vez tiene diferentes carpetas de adjetivos como \enquote{1. Ruidoso} que contienen todos los videos que tienen esa etiqueta.\vspace{0.5cm}\par
+
+Por último se tiene el dataset SLOVO que contiene la carpeta de los videos, donde cada video está guardado con un serial específico y además un CSV, el cual contiene la asociación de cada video con diferentes datos relevantes como su etiqueta en ruso, la duración, tamaño, entre otras.\vspace{0.5cm}\par
+
+\section{Preprocesamiento de los datos}
+
+\subsection{Reestructuración de los Datos}
+
+Debido a que los datos se organizan de maneras diferentes, se utilizan distintas aproximaciones para poder extraer los videos, asociarles una etiqueta y llegar a un mismo formato, para de esta manera poder almacenar en nuevos archivos H5 los diferentes datasets con una misma estructura. Con esto en mente se define que la estructura que se utilizara es que cada elemento en el archivo H5 será un video (conjunto de frames) y asociado a cada elemento se tendrá un atributo que se llama \enquote{gloss} el cual contendrá la etiqueta en inglés de cada video.\vspace{0.5cm}\par
+
+Para empezar el proceso que se le realizó a los datos de WLASL consto de diferentes pasos iniciando con la lectura del archivo de texto \enquote{missing.txt}, este paso filtra videos problemáticos desde el inicio, evitando procesar datos que no existen o no son válidos, lo que ahorra tiempo y previene errores. Luego se lee el archivo \enquote{WLASL\_v0.3.json} el cual contiene metadatos, como los Id´s de los videos y sus etiquetas, se carga este archivo para asociar cada video con su significado. Es por esto que el siguiente paso consiste en crear un mapeo de video a etiqueta, procesarla y contarla para verificar que estén completas, cuando se procesa se asegura que no existan caracteres que no se puedan imprimir o que la etiqueta este vacía. Posteriormente, se crea un archivo HDF5 que servirá de contenedor estructurado para almacenar videos y sus etiquetas de una forma determinada, facilitando su uso en análisis posteriores. Luego se Verifica la existencia del archivo, evitando errores al intentar leer un archivo que no está presente, también se filtran videos sin etiqueta, asegurando que solo se procesen videos válidos. Después de asegurar la integridad de los archivos, se leen y guardan en el archivo HDF5 para por último registrar y guardar errores. El anterior procedimiento se resume y define en el siguiente diagrama de flujo.
+
+\begin{figure}[H]
+    \caption{Diagrama de flujo con el procesamiento de los datos del dataset de WLSL.03}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/DiagramaFlujoWLSL.PNG}
+    \label{fig:DiagFWLSL}
+\end{figure}
+
+En cuanto al dataset de ISL, se comienza haciendo un recorrido de manera recursiva a la carpeta donde se encuentran los videos y cuando se encuentra un video se extrae la ruta completa del mismo combinado la carpeta y nombre del archivo, para lograr obtener el nombre de la carpeta donde está almacenado y el nombre de una manera fácil. Después se crea un identificador único por cada archivo que consta de la combinación anterior entre la carpeta y nombre, por ejemplo \enquote{Adjetives\_1of81. loud.MOV}. Luego se realiza una limpieza a las etiquetas, se realiza de esta manera porque en su versión original los nombre de los videos vienen con prefijos como \enquote{1. loud} y convertirlos en \enquote{loud}. Posteriormente, se crea una tupla que contiene la ruta del video, el nombre completo y su etiqueta limpia. Ya teniendo los videos y su respectiva etiqueta procesada, se prosigue a realizar  el guardado en el formato indicado. Se realiza el mismo proceso de guardado que en el caso de WLSL, por este motivo se va a obviar el proceso, teniendo el siguiente diagrama de flujo.
+
+\begin{figure}[H]
+    \caption{Diagrama de flujo con el procesamiento de los datos del dataset de ISL}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/DiagramaFlujoISL.PNG}
+    \label{fig:DiagFISL}
+\end{figure}
+
+Por último, para el dataset SLOVO se tuvo que emplear pasos extra, pues como se menciona en la descripción del conjunto de datos, las etiquetas aparte de estar organizadas de otra manera, están en ruso, sin embargo, la traducción se realiza al final. Por esto es que se comienza con la lectura del CSV pasándolo a un dataframe para realizarle operaciones más fácilmente. Se crea un archivo H5 para poder almacenar los nuevos datos organizados, luego se lee el df extrayendo el id del video y su respectiva etiqueta para realizar una búsqueda por id en las subcarpetas donde se almacenan los videos. Con el nombre del video (id) y su etiqueta, se realiza el guardado en el archivo H5 de la misma manera que en los casos anteriores, por este motivo se obvia este proceso. Por último, se realiza la traducción de este nuevo archivo H5 comenzando por la extracción de las etiquetas y dejándolas en un archivo TXT, luego se utiliza la librería \enquote{googletrans import Translator} para traducir todas las etiquetas del TXT a inglés, seguido a esto se revisa manualmente que cada etiqueta esté traducida correctamente al inglés y que la palabra exista. Esta traducción se guarda en un archivo JSON en modo diccionario, donde está la clave original en ruso asignada con su traducción, para luego abrir el archivo H5 y empezar a reemplazar las etiquetas en ruso por las traducidas, teniendo como resultado el siguiente diagrama.  
+
+\begin{figure}[H]
+    \caption{Diagrama de flujo con el procesamiento de los datos del dataset de SLOVO}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/DiagramaFlujoSLOVO.PNG}
+    \label{fig:DiagFSLOVO}
+\end{figure}
+
+\subsection{Selección de las etiquetas}
+
+Para las diferentes pruebas realizadas se utiliza una herramienta que permite comparar todas las etiquetas procesadas que hay en común en los tres sets de datos, esto para poder asegurar que hay una equivalencia interlingüística entre etiquetas. Con esta herramienta, luego de realizar un análisis a todas las etiquetas existentes de los 3 datasets se encontró lo siguiente, en total se tienen 2000 etiquetas en WLSL, 263 etiquetas en ISL y 927 etiquetas en SLOVO. Las diferentes cantidades etiquetas en común son estas, 204 etiquetas comunes entre WLSL e ISL, 456 etiquetas comunes entre WLSL y SLOVO, 99 etiquetas comunes entre ISL y SLOVO. Teniendo 93 etiquetas comunes entre los tres diferentes datasets, las cuales se pueden representar con la siguiente lista de palabras. 
+
+\begin{longtable}{ccc}
+
+\multicolumn{3}{c}{\textbf{Etiquetas en común}}\\[0.5ex]\hline
+\endfirsthead
+
+\multicolumn{3}{c}{\textbf{Etiquetas en común}}\\[0.5ex]\hline
+\endhead
+
+animal & bad & beautiful \\
+bird & black & blue \\
+book & boy & brother \\
+brown & cat & cheap \\
+child & clean & cold \\
+cow & daughter & dog \\
+dry & evening & expensive \\
+family & famous & father \\
+fish & friend & girl \\
+good & green & happy \\
+hard & heavy & high \\
+hot & hour & house \\
+i & key & light \\
+long & man & mean \\
+minute & monday & money \\
+month & morning & mother \\
+mouse & new & newspaper \\
+nice & night & old \\
+orange & paper & pencil \\
+pink & poor & price \\
+red & religion & restaurant \\
+saturday & school & second \\
+short & sister & slow \\
+soft & son & spring \\
+strong & summer & sunday \\
+thursday & time & today \\
+tomorrow & train & tuesday \\
+waiter & warm & week \\
+white & wife & winter \\
+woman & year & yellow \\
+yesterday & you & young \\
+
+\end{longtable}
+
+\subsection{Redimensionamiento de tamaño y duración de las secuencias}
+
+También se le realiza un preprocesamiento especial a los datos seleccionados el cual consiste en un recorte específico para uniformar la duración de las secuencias, un ajuste de las dimensiones de los videos para igualar los tamaños, un cambio a blanco y negro para que las secuencias se puedan procesar de manera más eficiente, y una separación del intérprete del fondo, dejando uno solo para las secuencias.\vspace{0.5cm}\par
+
+Se decide optar por la utilización de estos cambios para mejorar la tasa de aprendizaje y su rendimiento. Para el mejor resultado del proyecto, se necesita el empleo de varias etiquetas y de múltiples videos, para que el tiempo de ejecución no sea muy grande, se consideran todas las opciones que hay disponibles para recortar la mayor cantidad de información, asegurando un resultado satisfactorio. Es por esto que se decide igualar todas las secuencias con una estrategia específica, el primer paso de esta es calcular la mediana de la cantidad de frames de todas las secuencias dadas. Luego, teniendo como referencia esta métrica, se realiza una comprobación para saber si la secuencia que se está procesando es menor, mayor o igual a la mediana.\vspace{0.5cm}\par 
+
+Si es menor a la mediana, se crea una nueva secuencia que tiene el número de frames especifico, esto se logra usando una interpolación lineal para generar una nueva secuencia con una duración determinada, por ejemplo si la mediana fuera 8 se distribuyen los frames (originales e interpolados) uniformemente en la nueva secuencia. Los nuevos frames se crean como combinaciones ponderadas de los frames originales en posiciones intermedias, determinadas por los índices generados por la funcion \enquote{np.linspace}. Siguiendo el ejemplo, se añaden 3 frames a una secuencia de 5, donde los nuevos frames estarán distribuidos aproximadamente entre los frames originales, con pesos calculados según su posición relativa.\vspace{0.5cm}\par 
+
+Si es mayor a la mediana se reduce la secuencia de video seleccionando un subconjunto de frames distribuidos uniformemente, eliminando de esta manera los frames sobrantes, cabe aclarar que en este caso no se realiza interpolación ni transformación, solo selecciona frames ya existentes. Por ejemplo, si la duración actual del clip son 10 frames y la mediana es 7, se utiliza la función \enquote{np.linspace(0, 9, num=7, dtype=int)} dando como resultado algo como [0, 1, 3, 4, 6, 7, 9]. Esta función selecciona 7 frames de los 10 originales, distribuidos lo más uniformemente posible para evitar errores como que se eliminen de manera seguida y perder fragmentos importantes de video.\vspace{0.5cm}\par 
+
+Por último, si la secuencia resulta tener la misma duración de la mediana, se deja igual realizando una copia de los frames de la secuencia que se esté procesando en el momento. Posteriormente a este paso, se redimensionan los frames a 120 x 160 y se pasa a blanco y negro, ya que no se pierde la información de lo que está realizando el intérprete, y es necesario para poder procesar la mayor cantidad de secuencias posible con los recursos delimitados.\vspace{0.5cm}\par 
+
+\subsection{Recorte del fondo de las secuencias}
+
+Para asegurarse que el modelo se encargue de aprender las características temporales, se decide quitar el fondo y dejar solamente a los intérpretes. Se refuerza esta decisión teniendo en cuenta que es bastante probable que el modelo empiece a agrupar secuencias de video en el espacio latente según el fondo en el que se es grabado. Como, por ejemplo, que agrupe todas las secuencias de ISL que tenga un tablero en el fondo, o que agrupe todas las secuencias de WLSL que tengan un fondo blanco. Para lograr esto se diseña un algoritmo que tiene como base la utilización del modelo \enquote{yolov8m-seg.pt}. No se emplea alguna librería preentrenada de opencv o de Google porque se busca un enfoque que sea muy flexible y personalizable, se busca esta aproximación en mayor medida, porque hay algunos casos específicos que no se detectan de manera correcta con estas librerías. Como lo puede ser cuando se tiene la interpolación de frames, se tienen dos o una figura translúcida, pues es un frame de transición donde el intérprete esta en medio de dos señas.\vspace{0.5cm}\par
+
+En el caso del dataset de ISL y WLSL coincidieron en que la mejor variación de hiperparámetros para hallar el mejor recorte es la utilización de un método híbrido. Este método es la combinación de dilatación de la máscara, con el fin de adaptarse mejor a la forma del intérprete, con un margen adicional alrededor del contorno, ofreciendo un enfoque más robusto. Sin embargo, para el dataset SLOVO la mejor opción fue el método de dilatación con un kernel 15x15.\vspace{0.5cm}\par
+
+La elección de estos métodos, y que se emplee un margen al rededor de todos los interpretes, se debe principalmente a que es muy complicado generar un algoritmo que se adapte a todas las diferentes formas que puede producir un intérprete con pocos videos. Además, hay muchos intérpretes diferentes que como en el caso del dataset SLOVO todos estaban grabados de maneras diferentes, cambiando tanto el fondo como la iluminación bruscamente. Por este motivo es que no se llega a recortar enteramente la silueta de los videos, puede que funcione en la mayoría de los videos, pero si hay varias secuencias de video donde se recortan los dedos de la seña que se está haciendo, el método se considera insuficiente.\vspace{0.5cm}\par
+
+Luego de realizar los recortes al revisar todos los frames para corroborar que se habían recortado correctamente, se pudo evidenciar que en contados momentos muy rara vez se producía un error donde dejaba un frame en negro, tambien algunas secuencias tenian frames en negro desde el inicio. En vista de que es un problema muy poco frecuente donde se recorta todo el contenido, se decidió que cuando se encuentre un frame de este tipo, fuera reemplazado por la combinación del que tiene antes y después.
+
+\subsection{Recuento de los datos disponibles}
+
+Con los datos preprocesados se hacen subconjuntos de los tres datasets que se trabajan. Estos subconjuntos están delimitados por sus etiquetas y se asegura que estas sean las mismas para cada subconjunto de cada uno de los lenguajes de señas, se crean subconjuntos para las siguientes cantidades de etiquetas; 5, 10, 20, 35, 50 y 72 etiquetas. Como se señaló, se crea un subconjunto por cada uno de los datasets, resultando en 18 subconjuntos de datos, que son equivalentes entre sí en cuanto a su denominación, en otras palabras, el subconjunto de 5 etiquetas de ISL tiene las mismas etiquetas que el dataset de 5 etiquetas en SLOVO.\vspace{0.5cm}\par
+
+Esto se realiza para poder realizar comparaciones que estén en las mismas condiciones y para que los conjuntos de datos estén alineados con el objetivo del proyecto, el cual es encontrar una equivalencia entre lenguajes. Además de poder realizar diferentes simulaciones sin tener el problema que no permite utilizar todas las etiquetas al mismo tiempo debido a falta de recursos y poder computacional en la plataforma de AWS. Cabe aclarar que no se tiene la misma cantidad de videos por los tres idiomas en cada etiqueta, lo cual significa que se tiene un gran desbalance, donde en el peor caso posible un idioma podria superar a otro por mas de 50 videos. Para poder detectar cuáles son las etiquetas que tienen un mayor desbalance se decidió realizar una tabla, la cual contiene la etiqueta, la cantidad de videos que tiene por lenguaje, el mínimo de videos que tienen en algún lenguaje y por último el total de videos por etiqueta.\vspace{0.5cm}\par
+
+\begin{longtable}{r l c c c c c}
+\multicolumn{7}{c}{\textbf{RANKING DE ETIQUETAS POR BALANCE Y COMPLETITUD}} \\
+\multicolumn{7}{c}{(Ordenado de la etiqueta más equilibrada a la menos equilibrada)} \\[0.5ex]\hline
+\# & ETIQUETA & ISL & SLOVO & WLSL\_V03 & MÍNIMO (Balance) & TOTAL \\
+\hline
+\endfirsthead
+\multicolumn{7}{c}{\textbf{RANKING DE GLOSAS POR BALANCE Y COMPLETITUD}} \\
+\multicolumn{7}{c}{(Ordenado de la glosa más equilibrada a la menos equilibrada)} \\[0.5ex]\hline
+\# & GLOSA & ISL & SLOVO & WLSL\_V03 & MÍNIMO (Balance) & TOTAL \\
+\hline
+\endhead
+1 & short & 21 & 40 & 13 & 13 & 74 \\
+2 & cold & 20 & 20 & 12 & 12 & 52 \\
+3 & man & 19 & 20 & 12 & 12 & 51 \\
+4 & brother & 20 & 20 & 11 & 11 & 51 \\
+5 & mother & 19 & 20 & 11 & 11 & 50 \\
+6 & woman & 19 & 20 & 11 & 11 & 50 \\
+7 & dog & 18 & 20 & 11 & 11 & 49 \\
+8 & family & 16 & 20 & 11 & 11 & 47 \\
+9 & thursday & 11 & 20 & 11 & 11 & 42 \\
+10 & good & 21 & 60 & 10 & 10 & 91 \\
+11 & black & 19 & 40 & 10 & 10 & 69 \\
+12 & bad & 21 & 20 & 10 & 10 & 51 \\
+13 & hot & 21 & 20 & 10 & 10 & 51 \\
+14 & daughter & 19 & 20 & 10 & 10 & 49 \\
+15 & orange & 19 & 20 & 10 & 10 & 49 \\
+16 & son & 19 & 20 & 10 & 10 & 49 \\
+17 & white & 19 & 20 & 10 & 10 & 49 \\
+18 & bird & 18 & 20 & 10 & 10 & 48 \\
+19 & fish & 18 & 20 & 10 & 10 & 48 \\
+20 & year & 11 & 20 & 10 & 10 & 41 \\
+21 & yesterday & 11 & 20 & 10 & 10 & 41 \\
+22 & dry & 21 & 20 & 9 & 9 & 50 \\
+23 & new & 21 & 20 & 9 & 9 & 50 \\
+24 & school & 20 & 20 & 9 & 9 & 49 \\
+25 & child & 19 & 20 & 9 & 9 & 48 \\
+26 & cow & 19 & 20 & 9 & 9 & 48 \\
+27 & girl & 19 & 20 & 9 & 9 & 48 \\
+28 & pink & 19 & 20 & 9 & 9 & 48 \\
+29 & train & 19 & 20 & 9 & 9 & 48 \\
+30 & animal & 18 & 20 & 9 & 9 & 47 \\
+31 & cat & 18 & 20 & 9 & 9 & 47 \\
+32 & minute & 11 & 20 & 9 & 9 & 40 \\
+33 & today & 11 & 20 & 9 & 9 & 40 \\
+34 & week & 11 & 20 & 9 & 9 & 40 \\
+35 & you & 21 & 80 & 8 & 8 & 109 \\
+36 & yellow & 19 & 40 & 8 & 8 & 67 \\
+37 & happy & 21 & 20 & 8 & 8 & 49 \\
+38 & slow & 21 & 20 & 8 & 8 & 49 \\
+39 & boy & 20 & 20 & 8 & 8 & 48 \\
+40 & brown & 20 & 20 & 8 & 8 & 48 \\
+41 & blue & 19 & 20 & 8 & 8 & 47 \\
+42 & wife & 19 & 20 & 8 & 8 & 47 \\
+43 & sunday & 11 & 20 & 8 & 8 & 39 \\
+44 & time & 11 & 20 & 8 & 8 & 39 \\
+45 & expensive & 8 & 20 & 8 & 8 & 36 \\
+46 & light & 8 & 20 & 8 & 8 & 36 \\
+47 & mean & 8 & 20 & 8 & 8 & 36 \\
+48 & soft & 8 & 20 & 8 & 8 & 36 \\
+49 & strong & 8 & 20 & 8 & 8 & 36 \\
+50 & beautiful & 8 & 40 & 7 & 7 & 55 \\
+51 & old & 21 & 20 & 7 & 7 & 48 \\
+52 & house & 20 & 20 & 7 & 7 & 47 \\
+53 & restaurant & 20 & 20 & 7 & 7 & 47 \\
+54 & father & 19 & 20 & 7 & 7 & 46 \\
+55 & friend & 19 & 20 & 7 & 7 & 46 \\
+56 & green & 19 & 20 & 7 & 7 & 46 \\
+57 & red & 19 & 20 & 7 & 7 & 46 \\
+58 & sister & 19 & 20 & 7 & 7 & 46 \\
+59 & hour & 11 & 20 & 7 & 7 & 38 \\
+60 & month & 11 & 20 & 7 & 7 & 38 \\
+61 & saturday & 11 & 20 & 7 & 7 & 38 \\
+62 & summer & 11 & 20 & 7 & 7 & 38 \\
+63 & tomorrow & 11 & 20 & 7 & 7 & 38 \\
+64 & tuesday & 11 & 20 & 7 & 7 & 38 \\
+65 & cheap & 8 & 20 & 7 & 7 & 35 \\
+66 & clean & 8 & 20 & 7 & 7 & 35 \\
+67 & paper & 7 & 20 & 8 & 7 & 35 \\
+68 & religion & 7 & 20 & 7 & 7 & 34 \\
+69 & spring & 11 & 40 & 6 & 6 & 57 \\
+70 & hard & 8 & 40 & 6 & 6 & 54 \\
+71 & monday & 11 & 20 & 6 & 6 & 37 \\
+72 & morning & 11 & 20 & 6 & 6 & 37 \\\
+73 & winter & 11 & 20 & 6 & 6 & 37 \\
+74 & famous & 8 & 20 & 6 & 6 & 34 \\
+75 & high & 8 & 20 & 6 & 6 & 34 \\
+76 & poor & 8 & 20 & 6 & 6 & 34 \\
+77 & book & 7 & 20 & 6 & 6 & 33 \\
+78 & key & 7 & 20 & 6 & 6 & 33 \\
+79 & money & 7 & 20 & 6 & 6 & 33 \\
+80 & price & 7 & 20 & 6 & 6 & 33 \\
+81 & long & 21 & 20 & 5 & 5 & 46 \\
+82 & warm & 21 & 20 & 5 & 5 & 46 \\
+83 & young & 21 & 20 & 5 & 5 & 46 \\
+84 & mouse & 18 & 20 & 5 & 5 & 43 \\
+85 & night & 11 & 20 & 5 & 5 & 36 \\
+86 & heavy & 8 & 20 & 5 & 5 & 33 \\
+87 & pencil & 7 & 20 & 5 & 5 & 32 \\
+88 & i & 21 & 60 & 4 & 4 & 85 \\
+89 & evening & 11 & 20 & 4 & 4 & 35 \\
+90 & newspaper & 7 & 20 & 4 & 4 & 31 \\
+91 & nice & 4 & 20 & 6 & 4 & 30 \\
+92 & waiter & 11 & 20 & 3 & 3 & 34 \\
+93 & second & 3 & 20 & 6 & 3 & 29 \\
+\hline
+\end{longtable}
+
+Teniendo en cuenta la tabla anterior, los subconjuntos que se mencionaron anteriormente van a estar definidos por el orden de la tabla, en otras palabras, los subconjuntos con 5 etiquetas tendrán las que aparecen en el top 5 de la tabla y así sucesivamente. Se realiza esto para asegurarse que se usaran las mejores etiquetas posibles en los diferentes experimentos.\vspace{0.5cm}\par
+
+Siguiendo ese orden de ideas, el trabajo de investigación se trabajará con los siguientes subconjuntos de los tres Datasets principales en la medida que lo permitan los recursos computacionales:
+
+\begin{itemize}
+
+\item \textbf{\small Datasets que tienen las primeras 5 etiquetas: } En primera instancia se tiene \enquote{ISL\_5gloss.h5} con 99 videos, luego \enquote{SLOVO\_5gloss.h5} con 120 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 59 videos.
+
+\item \textbf{\small Datasets que tienen las primeras 10 etiquetas: } También se tiene \enquote{ISL\_5gloss.h5} con 184 videos, luego \enquote{SLOVO\_5gloss.h5} con 260 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 113 videos.
+
+\item \textbf{\small Datasets que tienen las primeras 20 etiquetas: } En esta división se tiene \enquote{ISL\_5gloss.h5} con 368 videos, luego \enquote{SLOVO\_5gloss.h5} con 480 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 213 videos.
+
+\item \textbf{\small Datasets que tienen las primeras 35 etiquetas: } Por otro lado, se tiene \enquote{ISL\_5gloss.h5} con 626 videos, luego \enquote{SLOVO\_5gloss.h5} con 840 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 348 videos.
+
+\item \textbf{\small Datasets que tienen las primeras 50 etiquetas: } Además, en esta subdivisión se tiene \enquote{ISL\_5gloss.h5} con 835 videos, luego \enquote{SLOVO\_5gloss.h5} con 1180 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 467 videos.
+
+\item \textbf{\small Datasets que tienen las primeras 72 etiquetas: } En este conjunto se tiene \enquote{ISL\_5gloss.h5} con 1128 videos, luego \enquote{SLOVO\_5gloss.h5} con 1660 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 618 videos.
+
+\item \textbf{\small Datasets que tienen todas las etiquetas: } Y finalmente, se tiene \enquote{ISL\_5gloss.h5} con 1355 videos, luego \enquote{SLOVO\_5gloss.h5} con 2120 videos y por último a \enquote{WLSL\_5gloss.h5} conteniendo un total de 728 videos.
+
+\end{itemize}
+
+Para resumir todo el proceso y quede mas claro todo el proceso de preprocesado de los datos, se propone este pequeño diagrama.
+
+\begin{figure}[H]
+    \caption{Diagrama de flujo con el resumen de todo el procesamiento de los datos de los tres Datasets}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/DiagramaFlujoFinal.PNG}
+    \label{fig:DiagFFinal}
+\end{figure}
+
+Además, se presentan tres ejemplos de como se transforman las secuencias de video durante el proceso, en la primera fila se tienen ocho frames distribuidos de la secuencia original, luego en la segunda fila se tiene la secuencia luego del recorte inteligente, por último la secuencia final pertenecen al resultado que se le pasa al modelo sin fondo ni frames en negro. En el caso de la figura que tiene el ejemplo, WLSL presenta algunos errores que contiene el dataset en sus videos, donde al final se presentan algunos frames en negro. Este error se soluciona con el recorte inteligente, al ser pocos frames en negro, no se tienen en cuenta. Sin embargo, en algunas secuencias los frames en negro alcanzan procesos finales donde ya se eliminó el fondo. Por este motivo está la última etapa de verificación y depuración que se mencionó con anterioridad, es muy importante, aunque no aplique para todos los casos.
+
+\begin{figure}[H]
+    \caption{Evolución de las secuencias del dataset ISL durante el procesamiento}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/EvolucionSecISL.PNG}
+    \label{fig:EvolSecISL}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Evolución de las secuencias del dataset SLOVO durante el procesamiento}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/EvolucionSecSLOVO.PNG}
+    \label{fig:EvolSecSLOVO}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Evolución de las secuencias del dataset WLSL durante el procesamiento}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 1/EvolucionSecWLSL.PNG}
+    \label{fig:EvolSecWLSL}
+\end{figure}

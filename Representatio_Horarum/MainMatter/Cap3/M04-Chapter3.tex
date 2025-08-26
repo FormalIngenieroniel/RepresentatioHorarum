@@ -1,0 +1,12 @@
+Analsis de resultados El documento "Batch feature standardization network with triplet loss" sustenta la preocupación por los conjuntos de datos desbalanceados. Menciona que una de las dificultades en la detección de anomalías en video es que el número de eventos normales supera con creces el de eventos anómalos, lo que resulta en "unbalanced datasets" (conjuntos de datos desbalanceados)
+
+Esta idea se sustenta de manera conceptual en el documento "Batch feature standardization network with triplet loss". El artículo propone un módulo de estandarización de características donde la media y la desviación estándar se calculan 
+
+únicamente a partir de las "bolsas negativas" (datos normales, análogos a un conjunto de entrenamiento). Luego, estos valores se utilizan para estandarizar tanto las bolsas positivas como las negativas. Este procedimiento tiene el mismo propósito que el descrito en tu párrafo: evitar que la información de un conjunto (en este caso, las "bolsas positivas" que pueden contener datos anómalos) contamine el proceso de estandarización, lo cual se alinea perfectamente con la idea de prevenir la filtración de datos del conjunto de validación.
+
+Creación de categorías para Triplet Loss: La creación de categorías o mapas de etiquetas para facilitar el aprendizaje con la técnica de triplet loss está respaldada por dos documentos:
+
+
+"Batch feature standardization network with triplet loss": Utiliza explícitamente la pérdida triplet y, para ello, clasifica las "bolsas" de datos en categorías como "bolsas positivas fuertes", "bolsas positivas débiles" y "bolsas negativas", que funcionan como ancla (anchor), positivo y negativo en el entrenamiento.
+
+"A novel triplet loss architecture...": También se centra en una arquitectura basada en triplet loss para detectar cambios, lo cual implica inherentemente la comparación entre tripletas de datos (ancla, positivo, negativo).

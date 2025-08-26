@@ -1,0 +1,128 @@
+%        1         2         3         4         5         6         7         8         9         0         1         2
+%23456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+\documentclass[12pt]{MIA-USA}
+
+\usepackage{layout}
+\usepackage{subcaption}
+\usepackage{paralist}
+\usepackage{breakcites}
+
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{array}
+
+\usepackage{lmodern}
+
+\usepackage[breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={Documento de trabajo Final}, 
+	pdfauthor={D.Bernal}, 
+	pdfsubject={}, 
+	pdfcreator={Daniel Bernal with Latex}, 
+	colorlinks=true,
+	linkcolor=GrisUno,
+	citecolor=AzulInstitucional,
+	filecolor=AzulClaro,
+	urlcolor=AzulInstitucional,
+	linktoc=all
+}
+
+\graphicspath{{Images/}}
+
+
+\title{Análisis de Técnica Reconstructiva y Contrastiva para la Traducción de Palabras en Lenguajes de Señas mediante Espacios Latentes con Datos y Recursos Limitados}
+\author{Daniel Camilo Bernal Ternera}
+\documenttype{Documento Final}
+
+\advisor{Nombres y apellidos Asesor}
+
+% Si hay un coasesor 
+% \coadvisor{Nombres y apellidos Co-Asesor}
+
+
+% Aqui comienza el documento
+% - -- --- ----- ------- ------- ----- --- -- -
+\pgfplotsset{compat=1.18}
+\begin{document}
+    % \layout{}
+	
+	\maketitle
+	% Incluye la pagina de acptación (Opcional)
+	\input{FrontMatter/F01-Approval}
+	% Incluye la dedicatoria (Opcional)
+	\input{FrontMatter/F02-Dedication}
+	% Incluye los agradecimientos (Opcional)
+	\input{FrontMatter/F03-Acknowledgements}
+	% Resumen
+    
+    \input{FrontMatter/F04-Abstract}
+    \let\cleardoublepage\clearpage
+    
+    % Crea la tabla de contenidos a partir de la estructura del documento
+    \tableofcontents
+    % Crea la lista de figuras (Opcional)
+    \listoffigures
+    % Crea la lista de tablas (Opcional)
+    \listoftables
+    % Incluye la lista de simbolos (Opcional)
+    %\input{FrontMatter/F05-Symbols}
+    \let\cleardoublepage\clearpage
+    % Glosario (Opcional)
+    %\input{FrontMatter/F06-Glossary}
+    \let\cleardoublepage\clearpage
+    
+    % Introduction
+    \chapter{Introducción}
+    %\input{MainMatter/Cap0/M01-Introduction}
+    \let\cleardoublepage\clearpage
+
+    % Problema de investigacion
+    \chapter{Problema de investigación}
+    \input{MainMatter/Cap0/M03-ResearchProblem}
+    \let\cleardoublepage\clearpage
+
+    % Justificación
+    \chapter{Justificación}
+    \input{MainMatter/Cap0/M04-Justification}
+    \let\cleardoublepage\clearpage
+    
+    % Objetivos
+    \chapter{Objetivos}
+    \input{MainMatter/Cap0/M05-Objectives}
+    \let\cleardoublepage\clearpage
+
+    % Trabajos previos
+    \chapter{Marco Teórico}
+    \input{MainMatter/Cap0/M02-Marco-teorico}
+    \let\cleardoublepage\clearpage
+    
+    % Capitulo 1
+    \chapter{Capítulo 1: Preprocesamiento y organización de los datos}
+    \input{MainMatter/Cap1/M02-Chapter1}
+    \let\cleardoublepage\clearpage
+    
+    % Capitulo 2
+    \chapter{Capítulo 2: Aplicación los datos obtenidos a la técnica}
+    \input{MainMatter/Cap2/M03-Chapter2}
+    \let\cleardoublepage\clearpage
+    
+    % Capitulo 3
+    \chapter{Capítulo 3: Evaluación los resultados obtenidos y futuras investigaciones}
+    %\input{MainMatter/Cap3/M04-Chapter3}
+    \let\cleardoublepage\clearpage
+    
+    % Anexos (Opcional)
+    % \chapter*{Anexos}
+    % \input{BackMatter/B01-Anexos}
+    
+    % Indices (Opcional)
+    % \chapter*{\'Indices}
+    % \input{BackMatter/B10-Index}
+    
+    % Incluye las referencias
+    %\bibliographystyle{apalike}
+    \printbibliography
+
+\end{document}

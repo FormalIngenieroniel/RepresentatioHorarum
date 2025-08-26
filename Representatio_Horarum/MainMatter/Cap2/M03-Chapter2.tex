@@ -1,0 +1,115 @@
+\section{Estructuración de la técnica}
+
+Se dividirá esta sección en las diferentes partes de la tecnica desarrollada. El orden de las subsecciones se da a partir del flujo de datos a traves del programa para poder cumplir el objetivo principal de la misma. El cual es, entrenar un modelo de aprendizaje profundo para aprender representaciones vectoriales, conocidas como \enquote{embeddings}, de videos de lenguaje de señas. La meta no solo es clasificar las señas, sino crear un \enquote{espacio latente} donde los videos con la misma seña estén agrupados y los videos con señas diferentes estén separadas.
+
+\subsection{Preparación de datos}
+
+Para preparar los datos se comienza con una división de los mismos. Por ejemplo, si se tiene un conjunto de 60 videos, este se divide en un conjunto de entrenamiento, con 48 videos, y otro de validación, con 12 videos. Es importante hacer una división estratificada para que la proporción de cada glosario sea la misma en ambos conjuntos, esta observación se realiza porque la cantidad de videos por etiqueta varía fuertemente dependiendo de la palabra que se esté utilizando. De no realizar la estratificación correctamente puede que todos los videos de una etiqueta resulten en train, pero no en test, haciendo que los conjuntos estén desbalanceados y no sean representativos.\vspace{0.5cm}\par
+
+Luego se realiza una normalización donde los valores de los píxeles, que inicialmente van de 0 a 255, se escalan a un rango de 0 a 1. Es importante destacar que esta normalización se calcula usando solo los valores mínimos y máximos del conjunto de entrenamiento para evitar la filtración de información del conjunto de validación al modelo, lo que podría llegar a sesgar el rendimiento del modelo al exponerlo a datos que no debería saber durante la fase de entrenamiento. Además, antes de la normalización, los datos se convierten al tipo float32 para garantizar precisión en los cálculos. Posteriormente, se crean mapas de etiquetas a índices para ambos conjuntos, lo que facilita la organización de los datos por categorías para tareas posteriores como los es el aprendizaje con la técnica triplet. Por último, se liberan los datos originales de la memoria mediante la eliminación de variables y la recolección de basura, optimizando el uso de recursos computacionales.
+
+\subsection{Construcción de las variantes}
+
+El siguiente paso es muy importante para todo el entrenamiento. Esto se dice, pues se hace toda la transformación a cada video que se encuentre en los conjuntos de entrenamiento y validación. Esta transformación es la generación de quintetos basada en la técnica de perdida de triplet, es decir, que para cada video de entrada, en otras palabras el ancla, se generan cuatro variantes adicionales, generando de esta forma un grupo de 5. En este grupo se tiene el Ancla, la cual es el video sin cambios. Luego se tiene el Positivo Desplazado, El cual es el mismo video, pero con los fotogramas desplazados temporalmente en una posición, esta se considera una variación buena por su similitud temporal. Posteriormente, se tiene el Negativo de una etiqueta, este es un video aleatorio de una seña diferente. Es una variación que se considera mala. También se tiene el Negativo Invertido, este es el video original pero reproducido hacia atrás. Este también se considera una variación mala por su estructura temporal. Por último, se tiene el Negativo Permutado, el cual consiste en que los fotogramas del video original están orden aleatorio. Esta es la última variación temporalmente mala.\vspace{0.5cm}\par
+
+Este nuevo formato de datos de entrada ahora tiene una dimensión extra de tamaño 5 para contener estas variantes. Por ejemplo, la forma de los datos de entrenamiento pasa a ser (48, 5, 7, 120, 160, 1). Donde 48 es el número de muestras, 5 el número de variantes, 7 el número de frames de las secuencias, 120 y 160 es  el tamaño de cada frame y por último el 1 son los canales.\vspace{0.5cm}\par
+
+El propósito de la inclusión de estas variantes es que el modelo pueda aprender de la mejor manera el \enquote{embedding} que representa cada seña. El modelo aprende esta representación al ser forzado a resolver una tarea pretexto, que en este caso es diferenciar entre variaciones \enquote{buenas} y \enquote{malas} de un mismo video. Se afirma que es capas de aprender a capturar las características temporales y espaciales porque al tener el Ancla y el Positivo Desplazado con representaciones similares, el modelo aprende a ser invariante a pequeños cambios temporales. Por otro lado, al también forzar a que las representaciones del Ancla y los tres Negativos sean diferentes, el modelo aprende a ser más sensible a lo que hace única una seña, es decir, el orden temporal correcto y la dirección del movimiento.
+
+\subsection{Construcción del modelo}
+
+En el siguiente paso se construye lo que sería la base del modelo, un autoencoder Conv3D. Este modelo primero redimensiona los fotogramas de entrada pasando de 120x160 a 80x60 para reducir la carga computacional. Luego, codifica la secuencia de video en una representación latente más pequeña y finalmente la decodifica para reconstruir el video original.\vspace{0.5cm}\par
+
+La codificación se realiza con cuello de botella, este se logra mediante diferentes capas convolucionales y de agrupación. Se utilizan capas Conv3D que a diferencia de las capas Conv2D que analizan imágenes que están estáticas, estas utilizan filtros tridimensionales. Esto quiere decir que el filtro no solo se desliza sobre la altura y el ancho del fotograma, sino que también a través del eje del tiempo. Esto es algo muy importante, pues es lo que hace que el modelo aprenda características espaciotemporales, como lo pueden ser patrones de movimiento, gestos y la dinámica de la seña como tal, en lugar de solo formas estáticas\autocite[p.~4]{Dey2024}\autocite[p.~1355,1369]{Innocente2025}. El número de filtros, primero 16 y luego 32, aumentan la capacidad del modelo para aprender características más complejas en cada nivel. También se usan capas MaxPooling3D después de cada convolución. Por ejemplo, una capa con pool\_size=(1, 2, 2) se encarga de reducir la dimensionalidad espacial, dividiendo la altura y ancho por 2, pero mantiene intacta la dimensión temporal. Esto hace que la representación sea más abstracta, robusta a movimientos cortos y previene el overfitting\autocite[p.~2924]{Dey2024}, cabe aclarar que también esto hacer que la longitud original de la secuencia de la seña sea igual. Por otro lado, también se usan capas BatchNormalization, las cuales se utilizan después de las convoluciones para poder estabilizar y acelerar el proceso de entrenamiento, normalizando de esta manera las activaciones de la capa anterior. Por último, se emplea el Cuello de Botella, bottleneck\_sequence, esta se considera la salida final del codificador, es una secuencia de tensores que representa la versión más comprimida y abstracta del video original. Esta también se considera la representación latente.\vspace{0.5cm}\par
+
+En cuanto a la decodificación, se realiza el proceso inverso, esto quiere decir que se toma la representación latente compacta y se expande para reconstruir el video original. Teniendo esto en mente, se usan capas Conv3DTranspose, las cuales son el complemento de las capas Conv3D y MaxPooling3D. Estas mediante el uso de strides=(1, 2, 2) pueden realizar una \enquote{deconvolución} o también conocida como \enquote{upsampling}, duplicando las dimensiones espaciales mientras aprenden a rellenar los detalles perdidos durante la codificación. Además, se tiene una capa de Salida, esta se considera la capa final, es una Conv3D con un número de filtros igual a los canales del video original. Esta hace uso de una función de activación sigmoid, se escoge esta función porque los píxeles de la imagen de entrada se normalizan típicamente al rango [0, 1], permitiendo que la función sigmoide se asegure que los píxeles del video reconstruido también se encuentren en este mismo rango, haciendo de esta manera que la función de pérdida sea más efectiva.\vspace{0.5cm}\par
+
+El modelo se encarga de devolver dos valores muy importantes, siendo el primero la reconstrucción. Aunque el objetivo del proyecto no es tener el video final reconstruido, juega un papel relevante porque es la manera en la que se calculara la pérdida de reconstrucción para obligar al autoencoder a aprender y mantener la información esencial del video como lo pueden ser la cantidad de dedos levantados entre otros indicadores. Mientras que la otra salida es la representación latente del cuello de botella. Esta salida es la que se utilizará en la etapa de aprendizaje contrastivo. Esta arquitectura con dos salidas es extremadamente eficiente, esto se puede afirmar porque con una sola pasada hacia adelante a través del codificador, se puede obtener las representaciones latentes necesarias para la pérdida de triplet y luego, al continuar por el decodificador, también se obtiene la salida para tener la pérdida de reconstrucción. Como se puede ver, esto permite entrenar el modelo para dos tareas simultáneamente, siendo estas la discriminación y reconstrucción, potenciando el aprendizaje de representaciones que son a la vez discriminativas y buenas en contenido.\vspace{0.5cm}\par
+
+Sin embargo, el modelo también tiene una particularidad y es que el autoencoder se envuelve en una clase personalizada llamada \enquote{TemporalTripletAutoencoder}, esta clase le añade dos capas adicionales. La primera es una capa GRU Bidireccional para poder analizar la secuencia temporal proveniente del cuello de botella del autoencoder. Mientras que la otra es una capa de Pooling final para condensar la salida de la GRU en un único vector de características de dimensión 256 para cada video. Esta es una implementación común y potente para tareas de video, dondeen este caso en lugar de un autoencoder, generalmente se utiliza una red Conv3D o una CNN espaciotemporal, que actúa como la parte codificadora para extraer características visuales, donde despues estas características se pasan a una red recurrente para analizar la secuencia\autocite[p.~1367]{Innocente2025}\autocite[p.~1]{Inamdar2023}\autocite[p.~2923]{Dey2024}.\vspace{0.5cm}\par
+
+Se toma esta aproximación por las ventajas que significa tener cierta encapsulación y lógica Compleja, es decir, el wrapper encapsula no solo la arquitectura sino que también toda la lógica de entrenamiento. Esto permite gestionar de forma ordenada los múltiples componentes de la función de pérdida, en este caso de reconstrucción, varias pérdidas de tripleta, etc., y sus respectivos pesos que se definen en el constructor. Esto también significa que hay más control del flujo de datos. Además, proporciona un control explícito sobre el paso hacia adelante, en otras palabras, esto significa que define exactamente cómo los datos fluyen desde la entrada, a través del autoencoder, y luego a través de las nuevas capas temporales para producir el vector final. No obstante, también proporciona flexibilidad en el entrenamiento, pudiendo sobreescribir el método \enquote{train\_step} de Keras para implementar un ciclo de entrenamiento completamente personalizado, donde se calculan y combinan las diferentes pérdidas, algo que es más complicado en modelo secuencial simple.\vspace{0.5cm}\par
+
+Esta nueva a aproximación agrega más capas que procesan la salida del cuello de botella del autoencoder. Para poder realizarlo, antes de que la secuencia pueda ser procesada por la GRU, se prepara porque el cuello de botella del autoencoder produce una secuencia de mapas de características 3D, con la siguiente forma \enquote{(Tiempo, Alto, Ancho, Canales)}. Sin embargo, la capa GRU espera una secuencia de vectores 1D, con forma\enquote{(Tiempo, Características)}\autocite[p.~3]{Inamdar2023}\autocite[p.~2923]{Dey2024}.\vspace{0.5cm}\par
+
+Con este paso previo realizado, se puede comenzar con la agregación Temporal usando una GRU Bidireccional. Se puede considerar que esta es la capa más importante para entender la dinámica temporal de una seña. Esto porque una Unidad Recurrente Cerrada (GRU) es un tipo de Red Neuronal Recurrente (RNN) que está diseñada para procesar secuencias. Esto quiere decir que posee filtros internos que le permiten decidir qué información de los pasos anteriores es relevante mantener y cuál se puede olvidar, permitiéndole de esta manera capturar detalles a lo largo del tiempo. Por ejemplo, se puede decir que es como leer un dicho, para poder entenderlo la GRU tiene la capacidad de recordar el contexto inicial para entender las palabras finales.\vspace{0.5cm}\par
+
+Ahora bien, aplicado al proyecto, una GRU estándar procesa la secuencia en un solo sentido, pero con un envoltorio bidireccional duplica la capa GRU. Mientras una procesa la secuencia hacia adelante, la otra la procesa hacia atrás para luego juntar ambas salidas. Esto es muy importante para el reconocimiento de señas, ya que el significado de un gesto depende no solo de lo que el intérprete ya realizo, sino que también de lo que hará después. Esto le da al modelo un contexto completo de toda la secuencia en cada punto de tiempo\autocite[p.~1371]{Innocente2025}.\vspace{0.5cm}\par
+
+Ahora bien, teniendo en cuenta lo anterior, la GRU Bidireccional tiene como resultado una secuencia de vectores enriquecidos con contexto temporal. Sin embargo, para la tarea de comparación que serán las distintas pérdidas, se necesita de un único vector de características que represente toda una secuencia de video. Para esto, la capa GlobalAveragePooling1D toma la secuencia de salida de la GRU y calcula el promedio de todos los vectores a lo largo de la dimensión temporal. Dando como resultado una condensación de una secuencia de longitud variable en un único vector de tamaño fijo.\vspace{0.5cm}\par
+
+A continuación, se muestra un diagrama que tiene toda la arquitectura del modelo antes descrita y las relaciones que tiene cada parte entre sí. Además, se muestran las interacciones de las diferentes perdidas triplet, donde la flecha verde indican que se atraen, mientras que la roja indica que hay cierto grado de repulsión. Se verá con más detalle adelante como funcionan estas perdidas en el espacio latente de visualización.\vspace{0.5cm}\par
+
+\begin{figure}[H]
+    \caption{Diagrama de la construcción del modelo}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/ResumenMod.png}
+    \label{fig:ResumenMod}
+\end{figure}
+
+\subsection{Entrenamiento del Modelo}
+
+Como se mencionó con anterioridad, se tiene un modelo wrapper que facilita la personalización del entrenamiento. Por este motivo se tiene su propio \enquote{train\_step}, que es el núcleo de la lógica de aprendizaje. Con esta modificación, cada paso de entrenamiento, calcula una pérdida combinada que se encarga de incluir las diferentes perdidas que se mencionaron con anterioridad en la construcción de las variantes.\vspace{0.5cm}\par
+
+Durante el entrenamiento, las triplet losses, al usar las distancias cuadradas, crean un espacio latente métrico donde la geometría puede llegar a reflejar similitudes semánticas y temporales. Al diferenciar shifts leves, es decir, los positivos, de cambios drásticos, como lo pueden ser negativos como gloss diferentes o alteraciones temporales, el modelo puede llegar a generalizar mejor los datos ruidosos.\vspace{0.5cm}\par
+
+\begin{figure}[H]
+    \caption{Comportamiento esperado para el Triplet Loss entre secuencias}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GrafTriplet.png}
+    \label{fig:GrafTripletSupuesto}
+\end{figure}
+
+Por ejemplo, puede ignorar las variaciones menores, pero detecta cambios en el significado o la secuencia. Por otro lado, usar distancias cuadradas es computacionalmente barato y junto a márgenes grandes permiten separaciones fuertes sin sobrepenalizar. Esta combinación de triplets múltiples permite multi-task learning, es decir, reconstrucción para fidelidad, inter-gloss para discriminación, y temporales para invariancia al orden.\vspace{0.5cm}\par
+
+En cuanto a su compilación, el modelo se compila con el optimizador Adam con una tasa de aprendizaje inicial baja. Por otro lado, utiliza una serie de configuraciones de Callbacks y entrenamiento específicas, estas son, EarlyStopping que sirve para detener el entrenamiento si el rendimiento en el conjunto de validación deja de mejorar, y la otra es ReduceLROnPlateau que funciona para reducir la tasa de aprendizaje si el entrenamiento se estanca. Para que se pueda realizar el entrenamiento de manera efectiva y completa en la plataforma de AWS, se limita el entrenamiento durante un máximo de 100 épocas, pero se detiene antes si se llega a activar el EarlyStopping, restaurando los mejores pesos de la época.
+
+\subsection{Evaluación del Modelo}
+
+En cuanto a la evaluación Post-Entrenamiento, se tienen en cuenta las métricas finales donde se mide el modelo final con los mejores pesos en el conjunto de validación completo para obtener las métricas de rendimiento finales. Esto lo hace por medio de una prueba de sensibilidad temporal, la cual se ejecuta con una función que verifica si el modelo aprendió correctamente la estructura temporal, midiendo si los vectores de los videos desplazados están, en promedio, más cerca de los originales que los vectores de los videos invertidos y permutados. Si el resultado se cumple, se puede confirmar que el aprendizaje fue exitoso.\vspace{0.5cm}\par
+
+Ademas de estas medidas se utilizan una serie de 
+
+Esperar a las diferentes modificaciones para sacar metricas
+
+\subsection{Visualizacion de los Resultados}
+
+Esperar a las diferentes modificaciones para sacar metricasx2
+
+\section{Aplicación de los datos obtenidos y documentación de resultados}
+
+\subsection{Con el dataset de WLSL}
+
+\subsubsection{Con 5 etiquetas}
+
+\subsubsection{Con 20 etiquetas}
+
+\subsubsection{Con 50 etiquetas}
+
+\subsubsection{Con 93 etiquetas}
+
+\subsection{Con el dataset de ISL}
+
+\subsubsection{Con 5 etiquetas}
+
+\subsubsection{Con 20 etiquetas}
+
+\subsubsection{Con 50 etiquetas}
+
+\subsubsection{Con 93 etiquetas}
+
+\subsection{Con el dataset de SLOVO}
+
+\subsubsection{Con 20 etiquetas}
+
+\subsubsection{Con 50 etiquetas}
+
+\subsubsection{Con 93 etiquetas}
+
+\subsection{Con los tres conjuntos de datos}
+
+\subsubsection{Con 20 etiquetas}
+
+\subsubsection{Con 50 etiquetas}
+
+\subsubsection{Con 93 etiquetas}
