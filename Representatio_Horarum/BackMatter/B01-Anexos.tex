@@ -1,6 +1,1909 @@
-% \section{Manual de instalación}
+\section{Gráficas de los Experimentos Realizados}
 
-% \section{Manual de usuario}
+\subsection{Experimentos del dataset de WLSL}
 
-% \section{Informe de ejecución de pruebas}
+\subsubsection{Con 2 etiquetas}
 
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/baseline1.png}
+    \label{fig:WLSLG2baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/baseline2.png}
+    \label{fig:WLSLG2baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/baseline3.png}
+    \label{fig:WLSLG2baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/baseline4.png}
+    \label{fig:WLSLG2baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/gen1.PNG}
+    \label{fig:WLSLG2gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/loss1.PNG}
+    \label{fig:WLSLG2loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/loss2.PNG}
+    \label{fig:WLSLG2loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother} y \enquote{cold}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/loss3.PNG}
+    \label{fig:WLSLG2loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/loss4.PNG}
+    \label{fig:WLSLG2loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/loss5.PNG}
+    \label{fig:WLSLG2loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca0.PNG}
+    \label{fig:WLSLG2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap0.PNG}
+    \label{fig:WLSLG2elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca1.PNG}
+    \label{fig:WLSLG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap1.PNG}
+    \label{fig:WLSLG2elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca2.PNG}
+    \label{fig:WLSLG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap2.PNG}
+    \label{fig:WLSLG2elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca3.PNG}
+    \label{fig:WLSLG2elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap3.PNG}
+    \label{fig:WLSLG2elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca4.PNG}
+    \label{fig:WLSLG2elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap4.PNG}
+    \label{fig:WLSLG2elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca5.PNG}
+    \label{fig:WLSLG2elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap5.PNG}
+    \label{fig:WLSLG2elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elpca6.PNG}
+    \label{fig:WLSLG2elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/2gloss/elumap6.PNG}
+    \label{fig:WLSLG2elumap6}
+\end{figure}
+
+\subsubsection{Con 3 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/baseline1.png}
+    \label{fig:WLSLG3baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/baseline2.png}
+    \label{fig:WLSLG3baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/baseline3.png}
+    \label{fig:WLSLG3baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/baseline4.png}
+    \label{fig:WLSLG3baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/gen1.PNG}
+    \label{fig:WLSLG3gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/loss1.PNG}
+    \label{fig:WLSLG3loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/loss2.PNG}
+    \label{fig:WLSLG3loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold} y \enquote{man}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/loss3.PNG}
+    \label{fig:WLSLG3loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/loss4.PNG}
+    \label{fig:WLSLG3loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/loss5.PNG}
+    \label{fig:WLSLG3loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca0.PNG}
+    \label{fig:WLSLG3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap0.PNG}
+    \label{fig:WLSLG3elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca1.PNG}
+    \label{fig:WLSLG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap1.PNG}
+    \label{fig:WLSLG3elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca2.PNG}
+    \label{fig:WLSLG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap2.PNG}
+    \label{fig:WLSLG3elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca3.PNG}
+    \label{fig:WLSLG3elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap3.PNG}
+    \label{fig:WLSLG3elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca4.PNG}
+    \label{fig:WLSLG3elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap4.PNG}
+    \label{fig:WLSLG3elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca5.PNG}
+    \label{fig:WLSLG3elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap5.PNG}
+    \label{fig:WLSLG3elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elpca6.PNG}
+    \label{fig:WLSLG3elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/3gloss/elumap6.PNG}
+    \label{fig:WLSLG3elumap6}
+\end{figure}
+
+\iffalse
+
+\subsubsection{Con 5 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/baseline1.png}
+    \label{fig:WLSLG5baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/baseline2.png}
+    \label{fig:WLSLG5baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/baseline3.png}
+    \label{fig:WLSLG5baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/baseline4.png}
+    \label{fig:WLSLG5baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/gen1.PNG}
+    \label{fig:WLSLG5gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/loss1.PNG}
+    \label{fig:WLSLG5loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/loss2.PNG}
+    \label{fig:WLSLG5loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold}, \enquote{man}, \enquote{mother} y \enquote{short}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/loss3.PNG}
+    \label{fig:WLSLG5loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/loss4.PNG}
+    \label{fig:WLSLG5loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/loss5.PNG}
+    \label{fig:WLSLG5loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (86) utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca0.PNG}
+    \label{fig:WLSLG5elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (86) utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap0.PNG}
+    \label{fig:WLSLG5elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca1.PNG}
+    \label{fig:WLSLG5elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap1.PNG}
+    \label{fig:WLSLG5elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca2.PNG}
+    \label{fig:WLSLG5elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap2.PNG}
+    \label{fig:WLSLG5elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca3.PNG}
+    \label{fig:WLSLG5elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap3.PNG}
+    \label{fig:WLSLG5elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca4.PNG}
+    \label{fig:WLSLG5elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap4.PNG}
+    \label{fig:WLSLG5elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca5.PNG}
+    \label{fig:WLSLG5elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap5.PNG}
+    \label{fig:WLSLG5elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elpca6.PNG}
+    \label{fig:WLSLG5elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{man} en verde, \enquote{mother} en rojo y \enquote{short} en morado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/5gloss/elumap6.PNG}
+    \label{fig:WLSLG5elumap6}
+\end{figure}
+
+\subsubsection{Con 7 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/baseline1.png}
+    \label{fig:WLSL75baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/baseline2.png}
+    \label{fig:WLSL75baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/baseline3.png}
+    \label{fig:WLSL75baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/baseline4.png}
+    \label{fig:WLSL75baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/gen1.PNG}
+    \label{fig:WLSL75gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/loss1.PNG}
+    \label{fig:WLSL75loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/loss2.PNG}
+    \label{fig:WLSL75loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold}, \enquote{dog}, \enquote{family}, \enquote{good}, \enquote{man} y \enquote{mother}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/loss3.PNG}
+    \label{fig:WLSL75loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/loss4.PNG}
+    \label{fig:WLSL75loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/loss5.PNG}
+    \label{fig:WLSL75loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca0.PNG}
+    \label{fig:WLSL75elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap0.PNG}
+    \label{fig:WLSL75elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca1.PNG}
+    \label{fig:WLSL75elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap1.PNG}
+    \label{fig:WLSL75elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca2.PNG}
+    \label{fig:WLSL75elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap2.PNG}
+    \label{fig:WLSL75elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca3.PNG}
+    \label{fig:WLSL75elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap3.PNG}
+    \label{fig:WLSL75elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca4.PNG}
+    \label{fig:WLSL75elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap4.PNG}
+    \label{fig:WLSL75elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca5.PNG}
+    \label{fig:WLSL75elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap5.PNG}
+    \label{fig:WLSL75elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elpca6.PNG}
+    \label{fig:WLSL75elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja, \enquote{dog} en verde, \enquote{family} en rojo, \enquote{good} en morado, \enquote{man} en cafe y \enquote{mother} en rosado. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/WLSL/7gloss/elumap6.PNG}
+    \label{fig:WLSL75elumap6}
+\end{figure}
+
+\fi
+
+\subsection{Con el dataset de ISL}
+
+\subsubsection{Con 2 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/baseline1.png}
+    \label{fig:ISLG2baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/baseline2.png}
+    \label{fig:ISLG2baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/baseline3.png}
+    \label{fig:ISLG2baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/baseline4.png}
+    \label{fig:ISLG2baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/gen1.PNG}
+    \label{fig:ISLG2gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/loss1.PNG}
+    \label{fig:ISLG2loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/loss2.PNG}
+    \label{fig:ISLG2loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother} y \enquote{cold}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/loss3.PNG}
+    \label{fig:ISLG2loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/loss4.PNG}
+    \label{fig:ISLG2loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/loss5.PNG}
+    \label{fig:ISLG2loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca0.PNG}
+    \label{fig:ISLG2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap0.PNG}
+    \label{fig:ISLG2elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca1.PNG}
+    \label{fig:ISLG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap1.PNG}
+    \label{fig:ISLG2elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca2.PNG}
+    \label{fig:ISLG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap2.PNG}
+    \label{fig:ISLG2elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca3.PNG}
+    \label{fig:ISLG2elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap3.PNG}
+    \label{fig:ISLG2elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca4.PNG}
+    \label{fig:ISLG2elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap4.PNG}
+    \label{fig:ISLG2elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca5.PNG}
+    \label{fig:ISLG2elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap5.PNG}
+    \label{fig:ISLG2elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elpca6.PNG}
+    \label{fig:ISLG2elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/2gloss/elumap6.PNG}
+    \label{fig:ISLG2elumap6}
+\end{figure}
+
+\subsubsection{Con 3 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/baseline1.png}
+    \label{fig:ISLG3baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/baseline2.png}
+    \label{fig:ISLG3baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/baseline3.png}
+    \label{fig:ISLG3baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/baseline4.png}
+    \label{fig:ISLG3baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/gen1.PNG}
+    \label{fig:ISLG3gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/loss1.PNG}
+    \label{fig:ISLG3loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/loss2.PNG}
+    \label{fig:ISLG3loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold} y \enquote{man}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/loss3.PNG}
+    \label{fig:ISLG3loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/loss4.PNG}
+    \label{fig:ISLG3loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/loss5.PNG}
+    \label{fig:ISLG3loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca0.PNG}
+    \label{fig:ISLG3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap0.PNG}
+    \label{fig:ISLG3elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca1.PNG}
+    \label{fig:ISLG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap1.PNG}
+    \label{fig:ISLG3elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca2.PNG}
+    \label{fig:ISLG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap2.PNG}
+    \label{fig:ISLG3elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca3.PNG}
+    \label{fig:ISLG3elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap3.PNG}
+    \label{fig:ISLG3elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca4.PNG}
+    \label{fig:ISLG3elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap4.PNG}
+    \label{fig:ISLG3elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca5.PNG}
+    \label{fig:ISLG3elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap5.PNG}
+    \label{fig:ISLG3elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elpca6.PNG}
+    \label{fig:ISLG3elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/ISL/3gloss/elumap6.PNG}
+    \label{fig:ISLG3elumap6}
+\end{figure}
+
+\subsection{Con el dataset de SLOVO}
+
+\subsubsection{Con 2 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/baseline1.png}
+    \label{fig:SLOVOG2baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/baseline2.png}
+    \label{fig:SLOVOG2baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/baseline3.png}
+    \label{fig:SLOVOG2baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/baseline4.png}
+    \label{fig:SLOVOG2baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/gen1.PNG}
+    \label{fig:SLOVOG2gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/loss1.PNG}
+    \label{fig:SLOVOG2loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/loss2.PNG}
+    \label{fig:SLOVOG2loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother} y \enquote{cold}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/loss3.PNG}
+    \label{fig:SLOVOG2loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/loss4.PNG}
+    \label{fig:SLOVOG2loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/loss5.PNG}
+    \label{fig:SLOVOG2loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca0.PNG}
+    \label{fig:SLOVOG2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap0.PNG}
+    \label{fig:SLOVOG2elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca1.PNG}
+    \label{fig:SLOVOG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap1.PNG}
+    \label{fig:SLOVOG2elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca2.PNG}
+    \label{fig:SLOVOG2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap2.PNG}
+    \label{fig:SLOVOG2elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca3.PNG}
+    \label{fig:SLOVOG2elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap3.PNG}
+    \label{fig:SLOVOG2elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca4.PNG}
+    \label{fig:SLOVOG2elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap4.PNG}
+    \label{fig:SLOVOG2elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca5.PNG}
+    \label{fig:SLOVOG2elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap5.PNG}
+    \label{fig:SLOVOG2elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elpca6.PNG}
+    \label{fig:SLOVOG2elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/2gloss/elumap6.PNG}
+    \label{fig:SLOVOG2elumap6}
+\end{figure}
+
+\subsubsection{Con 3 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/baseline1.png}
+    \label{fig:SLOVOG3baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/baseline2.png}
+    \label{fig:SLOVOG3baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/baseline3.png}
+    \label{fig:SLOVOG3baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/baseline4.png}
+    \label{fig:SLOVOG3baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/gen1.PNG}
+    \label{fig:SLOVOG3gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/loss1.PNG}
+    \label{fig:SLOVOG3loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/loss2.PNG}
+    \label{fig:SLOVOG3loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold} y \enquote{man}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/loss3.PNG}
+    \label{fig:SLOVOG3loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/loss4.PNG}
+    \label{fig:SLOVOG3loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/loss5.PNG}
+    \label{fig:SLOVOG3loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca0.PNG}
+    \label{fig:SLOVOG3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap0.PNG}
+    \label{fig:SLOVOG3elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca1.PNG}
+    \label{fig:SLOVOG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap1.PNG}
+    \label{fig:SLOVOG3elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca2.PNG}
+    \label{fig:SLOVOG3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap2.PNG}
+    \label{fig:SLOVOG3elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca3.PNG}
+    \label{fig:SLOVOG3elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap3.PNG}
+    \label{fig:SLOVOG3elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca4.PNG}
+    \label{fig:SLOVOG3elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap4.PNG}
+    \label{fig:SLOVOG3elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca5.PNG}
+    \label{fig:SLOVOG3elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap5.PNG}
+    \label{fig:SLOVOG3elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elpca6.PNG}
+    \label{fig:SLOVOG3elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, \enquote{cold} en naranja y \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/SLOVO/3gloss/elumap6.PNG}
+    \label{fig:SLOVOG3elumap6}
+\end{figure}
+
+\subsection{Con los tres conjuntos de datos}
+
+\subsubsection{Con 2 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/baseline1.png}
+    \label{fig:Los3G2baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/baseline2.png}
+    \label{fig:Los3G2baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/baseline3.png}
+    \label{fig:Los3G2baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/baseline4.png}
+    \label{fig:Los3G2baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/gen1.PNG}
+    \label{fig:Los3G2gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/loss1.PNG}
+    \label{fig:Los3G2loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/loss2.PNG}
+    \label{fig:Los3G2loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother} y \enquote{cold}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/loss3.PNG}
+    \label{fig:Los3G2loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/loss4.PNG}
+    \label{fig:Los3G2loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/loss5.PNG}
+    \label{fig:Los3G2loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca0.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid0.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap0.PNG}
+    \label{fig:Los3G2elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid0.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca1.PNG}
+    \label{fig:Los3G2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid1.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap1.PNG}
+    \label{fig:Los3G2elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid1.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca2.PNG}
+    \label{fig:Los3G2elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid2.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap2.PNG}
+    \label{fig:Los3G2elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid2.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca3.PNG}
+    \label{fig:Los3G2elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid3.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap3.PNG}
+    \label{fig:Los3G2elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid3.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca4.PNG}
+    \label{fig:Los3G2elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid4.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap4.PNG}
+    \label{fig:Los3G2elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid4.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca5.PNG}
+    \label{fig:Los3G2elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid5.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap5.PNG}
+    \label{fig:Los3G2elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid5.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpca6.PNG}
+    \label{fig:Los3G2elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elpcaid6.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul y \enquote{cold} en naranja. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumap6.PNG}
+    \label{fig:Los3G2elumap6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/2gloss/elumapid6.PNG}
+    \label{fig:Los3G2elpca0}
+\end{figure}
+
+\subsubsection{Con 3 etiquetas}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio Semántico del modelo comparado con un \enquote{baseline} o punto de referencia. Siendo este el modelo sin entrenar. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/baseline1.png}
+    \label{fig:Los3G3baseline1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica evalúa la capacidad del modelo para entender el orden temporal de las secuencias de video comparadas con sus respectivos \enquote{baselines} del modelo no entrenado. Muestra la distancia euclidiana promedio entre la secuencia original y sus versiones alteradas (shifted, inverted, permuted).}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/baseline2.png}
+    \label{fig:Los3G3baseline2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el rendimiento del modelo principal con un modelo más simple en términos de la pérdida total de validación. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo, donde los valores más bajos son mejores, y el eje X representa las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/baseline3.png}
+    \label{fig:Los3G3baseline3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica compara el ratio semántico del modelo comparado con dos \enquote{baselines} o puntos de referencia. Siendo estos el modelo sin entrenar y la representación de PCA. El eje Y representa el ratio semántico, que mide la capacidad del modelo para diferenciar entre palabras diferentes, mientras que el eje X representa las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/baseline4.png}
+    \label{fig:Los3G3baseline4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico mide directamente la calidad de la separación semántica en el espacio latente para palabras con la misma y diferente clase. El eje Y representa la distancia euclidiana promedio y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/gen1.PNG}
+    \label{fig:Los3G3gen1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la evolución de la \enquote{Pérdida Total} a lo largo de 100 épocas de entrenamiento. El eje Y representa el valor de la pérdida, una métrica que indica cuán bien el modelo está aprendiendo donde valores más bajos son mejores. El eje X representa las épocas, es decir, cada ciclo completo de entrenamiento sobre el conjunto de datos.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/loss1.PNG}
+    \label{fig:Los3G3loss1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta gráfica ilustra la \enquote{Pérdida de Reconstrucción}, que mide qué tan bien el autoencoder del modelo puede reconstruir la entrada original después de haberla comprimido en un espacio latente. Al igual que en la gráfica anterior, el eje Y es el valor de la pérdida y el eje X son las épocas.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/loss2.PNG}
+    \label{fig:Los3G3loss2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Este gráfico muestra la \enquote{Pérdida Triplet Semántica}, una métrica clave que evalúa si el modelo puede diferenciar entre distintos glosarios, en este caso, las señas \enquote{brother}, \enquote{cold} y \enquote{man}. El objetivo es que las representaciones de un mismo glosario estén más cerca entre sí que las de glosarios diferentes. Igualmente, el eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/loss3.PNG}
+    \label{fig:Los3G3loss3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta visualización se enfoca en la sensibilidad temporal del modelo, puesto que, mide la diferencia entre la secuencia original de un video y su versión invertida. Esto quiere decir que el modelo debe aprender que una secuencia invertida es significativamente diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/loss4.PNG}
+    \label{fig:Los3G3loss4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Similar a la gráfica anterior, esta también evalúa la sensibilidad temporal, pero en este caso, compara la secuencia original con una versión donde los fotogramas han sido desordenados aleatoriamente. Donde el objetivo es que el modelo reconozca que una secuencia permutada es muy diferente de la original. El eje Y representa el valor de esta pérdida, mientras que el eje X indica las épocas de entrenamiento.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/loss5.PNG}
+    \label{fig:Los3G3loss5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca0.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid0.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap0.PNG}
+    \label{fig:Los3G3elumap0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la mejor epoca (100) utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid0.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca1.PNG}
+    \label{fig:Los3G3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid1.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap1.PNG}
+    \label{fig:Los3G3elumap1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 5 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid1.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca2.PNG}
+    \label{fig:Los3G3elpca1}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid2.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap2.PNG}
+    \label{fig:Los3G3elumap2}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 15 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid2.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca3.PNG}
+    \label{fig:Los3G3elpca3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid3.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap3.PNG}
+    \label{fig:Los3G3elumap3}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 25 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid3.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca4.PNG}
+    \label{fig:Los3G3elpca4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid4.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap4.PNG}
+    \label{fig:Los3G3elumap4}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 45 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid4.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca5.PNG}
+    \label{fig:Los3G3elpca5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid5.PNG}
+    \label{fig:Los3G3elpca0}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap5.PNG}
+    \label{fig:Los3G3elumap5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 65 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid5.PNG}
+    \label{fig:Los3G3elpcaid5}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpca6.PNG}
+    \label{fig:Los3G3elpca6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando pca, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elpcaid6.PNG}
+    \label{fig:Los3G3elpcaid6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas \enquote{brother} estan con color azul, las de \enquote{cold} en naranja y las de \enquote{man} en verde. Las diferentes formas de los puntos representan una variante diferente del video, siendo el circulo el original, la cruz el desplazado, el cuadrado el desordenado, y la equis la invertida.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumap6.PNG}
+    \label{fig:Los3G3elumap6}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Esta grafica muestra el espacio latente en la epoca 85 utilizando umap, donde las señas del lenguaje \enquote{WLSL} estan color verde, las del \enquote{SLOVO} en rojo y las del \enquote{ISL} en azul.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Imagenes Cap 2/GraficasExperimentos/Los3/3gloss/elumapid6.PNG}
+    \label{fig:Los3G3elumapid6}
+\end{figure}
