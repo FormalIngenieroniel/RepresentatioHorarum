@@ -58,6 +58,8 @@ Continuous Sign Language Recognition (CSLR) is a specialized field within comput
   - Data augmentation techniques for improved generalization
   - Help organize the sequence in a latent space using triplet loss
 
+---
+
 ## 📋 Dataset Support
 
 ### WLASL Dataset
@@ -81,57 +83,41 @@ Continuous Sign Language Recognition (CSLR) is a specialized field within comput
 - Russian-origin data requiring translation and adaptation
 - Special preprocessing for language-specific features
 
+---
+
 ## 🔧 Data Preprocessing Pipeline
 
-1. Data Restructuring
+### 1. Data Restructuring
 
+- Converts various dataset formats into unified H5 structure
+- Standardizes video sequences with consistent frame dimensions
+- Normalizes temporal sequences to fixed length
+  
+### 2. Label Translation
 
-Converts various dataset formats into unified H5 structure
+- Automatic translation of non-English gloss labels
+- Manual verification of translation accuracy
+- JSON mapping for language-specific terms
 
-Standardizes video sequences with consistent frame dimensions
+### 3. Sequence Normalization
 
-Normalizes temporal sequences to fixed length
+- Resizes frames to standardized dimensions (120x160)
+- Normalizes sequence length
+- Handles aspect ratio preservation and quality enhancement
 
+### 4. Background Processing
 
-2. Label Translation
+- Background removal for improved feature extraction using YOLOv8
+- Focus on signer silhouette and gesture patterns
+- Enhanced contrast and clarity adjustments
 
+---
 
-Automatic translation of non-English gloss labels
+## 🏗️ Implementation Structure
 
-Manual verification of translation accuracy
+### Model Architecture
 
-JSON mapping for language-specific terms
-
-
-3. Sequence Normalization
-
-
-Resizes frames to standardized dimensions (120x160)
-
-Normalizes sequence length to 7 frames
-
-Handles aspect ratio preservation and quality enhancement
-
-
-4. Background Processing
-
-
-Optional background removal for improved feature extraction
-
-Focus on signer silhouette and gesture patterns
-
-Enhanced contrast and clarity adjustments
-
-
-
-🏗️ Implementation Structure
-
-Model Architecture
-
-css
-copy
-download
-Input Video Sequence (N x 7 x 120 x 160 x 1)
+Input Video Sequence (N x F x 120 x 160 x 1)
     ↓
 3D Convolutional Autoencoder
     ↓
@@ -141,90 +127,38 @@ Bidirectional GRU Processing
     ↓
 Temporal Context Integration
     ↓
-Gloss Classification Output
+Gloss Visualization Output
 
-Training Components
+### Training Components
 
+- **Reconstruction Loss**: Ensures accurate video sequence reconstruction
+- **Triplet Loss (Inter-gloss)**: Separates different gloss by areas in a latent space
+- **Triplet Loss (Temporal)**: Maintains temporal consistency
+- **Combined Loss Function**: Weighted combination of all loss terms
 
-Reconstruction Loss: Ensures accurate video sequence reconstruction
+---
 
-Triplet Loss (Inter-gloss): Separates different gloss categories
+## 📊 Performance Metrics
 
-Triplet Loss (Temporal): Maintains temporal consistency
+### Training Metrics
 
-Combined Loss Function: Weighted combination of all loss terms
+- Total Loss (combined reconstruction and classification)
+- Reconstruction Loss (video sequence accuracy)
+- Inter-gloss Triplet Loss (category separation)
+- Temporal Triplet Loss (sequence consistency)
 
+### Evaluation Metrics
 
+- Cosine distance and L2 distance
+- Temporal sensitivity analysis
+- Cross-dataset performance comparison
+- Per-sequence agrupation clusters analysis
 
-📊 Performance Metrics
+---
 
-Training Metrics
+## 🔬 Experimental Results
 
-
-Total Loss (combined reconstruction and classification)
-
-Reconstruction Loss (video sequence accuracy)
-
-Inter-gloss Triplet Loss (category separation)
-
-Temporal Triplet Loss (sequence consistency)
-
-
-Evaluation Metrics
-
-
-Classification Accuracy per gloss category
-
-Temporal Sensitivity Analysis
-
-Cross-dataset Performance Comparison
-
-Per-sequence Classification Confidence
-
-
-
-🛠️ Technical Requirements
-
-Dependencies
-
-
-PyTorch / TensorFlow for deep learning framework
-
-OpenCV for video processing
-
-NumPy for numerical computations
-
-H5Py for dataset handling
-
-Googletrans for automatic label translation
-
-
-Hardware Requirements
-
-
-GPU with CUDA support recommended
-
-Minimum 8GB RAM for processing video sequences
-
-Storage space for multiple dataset formats
-
-Sufficient VRAM for 3D CNN operations
-
-
-Input Format
-
-
-Video files in standard formats (MP4, AVI, etc.)
-
-JSON metadata with gloss labels and sequence information
-
-H5 files with preprocessed sequences for training
-
-
-
-🔬 Experimental Results
-
-The system has been evaluated across multiple datasets with different configurations:
+The system has been evaluated across multiple datasets with 2 and 3 glosses:
 
 
 
@@ -299,7 +233,8 @@ download
 predictions = model.predict(video_sequence)
 gloss_labels = processor.decode_predictions(predictions)
 
+---
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Project created by **Daniel Bernal**
