@@ -14,7 +14,7 @@ Continuous Sign Language Recognition (CSLR) is a specialized field within comput
 
 - **Multi-dataset Support**: Handles different sign language datasets with unified preprocessing
 
-- This architecture transforms raw video input into meaningful gloss labels, enabling automatic understanding of continuous sign language communication.
+- This architecture transforms raw video input into meaningful embeddings with their gloss label, enabling understanding of continuous sign language words in different languages
 
 ---
 
@@ -64,18 +64,15 @@ Continuous Sign Language Recognition (CSLR) is a specialized field within comput
 
 ### WLASL Dataset
 
-
 - American Sign Language (ASL) video collection
 - Structured JSON metadata with gloss labels
 - Multiple video files with standardized naming convention
-
 
 ### ISL Dataset
 
 - Indian Sign Language video sequences
 - Custom format requiring preprocessing adaptation
 - More videos but less glosses
-
 
 ### SLOVO Dataset
 
@@ -158,80 +155,11 @@ Gloss Visualization Output
 
 ## 🔬 Experimental Results
 
-The system has been evaluated across multiple datasets with 2 and 3 glosses:
+The system has been evaluated across multiple datasets with 2 and 3 glosses where each experiment includes:
 
-
-
-WLASL Experiments: 2-label to full dataset classification
-
-ISL Dataset Tests: Irish Sign Language recognition performance
-
-SLOVO Evaluations: Slovenian Sign Language processing accuracy
-
-Cross-dataset Analysis: Generalization across different signing styles
-
-
-Each experiment includes:
-
-
-
-Training progression analysis
-
-Temporal sensitivity evaluation
-
-Confusion matrix generation
-
-Performance comparison tables
-
-
-
-📈 Future Enhancements
-
-
-🔄 Real-time Processing: Optimized inference for live sign language recognition
-
-🌐 Multi-language Support: Extended dataset compatibility
-
-📱 Mobile Deployment: Lightweight model variants for mobile devices
-
-🎯 Fine-tuning Capabilities: Domain-specific adaptation mechanisms
-
-📊 Advanced Analytics: Detailed performance breakdown and error analysis
-
-
-
-📖 Usage Examples
-
-Dataset Preparation
-
-python
-copy
-download
-# Load and preprocess datasets
-from cslr_preprocessing import DataProcessor
-
-processor = DataProcessor()
-processed_data = processor.prepare_dataset('WLASL', num_variants=5)
-
-Model Training
-
-python
-copy
-download
-# Initialize and train the CSLR model
-from cslr_model import CSLRAutoencoder
-
-model = CSLRAutoencoder(input_shape=(7, 120, 160, 1))
-model.train(processed_data, epochs=100)
-
-Inference
-
-python
-copy
-download
-# Predict gloss labels for new sequences
-predictions = model.predict(video_sequence)
-gloss_labels = processor.decode_predictions(predictions)
+- Training progression analysis with a graph for each loss
+- Temporal sensitivity evaluation with Cosine and L2 distances
+- Performance comparison tables and bar graphs between training and validation values
 
 ---
 
