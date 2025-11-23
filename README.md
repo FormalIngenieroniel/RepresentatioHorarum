@@ -30,7 +30,7 @@ This structure solves the problem of high-dimensional video data by reducing it 
 - ⏱️ **Temporal Dynamics Validation**: Robustness tested against temporal distortions (Inverted, Permuted, Shifted).
 - 📊 **Semantic Separation Metric**: Implements a custom metric to measure the ratio between inter-class distance and intra-class compactness.
 - 🗺️ **Latent Space Visualization**: Uses **UMAP** and **PCA** to visualize how the model clusters signs in 2D/3D space.
-- 📄 **Academic Rigor**: Based on the thesis *"Desarrollo de Técnica Reconstructiva y Contrastiva para el análisis de Palabras en Lenguajes de Señas"*.
+- 📄 **Academic Rigor**: Is the undergraduate thesis *"Desarrollo de Técnica Reconstructiva y Contrastiva para el análisis de Palabras en Lenguajes de Señas"* for the program *"Ciencias de la Computacion e Inteligencia Artificial"* from *"Universidad Sergio Arboleda"*.
 
 ---
 
