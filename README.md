@@ -1,168 +1,131 @@
-# 👨‍🔬 Scientific Investigation on CSLR and Temporal Sensitivity 💻
+# 🗣️ Sign Language Analysis – Reconstructive & Contrastive Latent Spaces
 
-Continuous Sign Language Recognition (CSLR) is a specialized field within computer vision and artificial intelligence that focuses on interpreting and understanding sign language from video sequences. Unlike isolated sign recognition, CSLR deals with continuous signing where multiple signs are connected and form complete phrases or sentences.
+This project implements an **Intelligent Agent** designed to analyze and interpret **Sign Language** words through a novel **Reconstructive and Contrastive Deep Learning technique**.
+
+Designed for scenarios with **Limited Data and Resources**, the model leverages a hybrid architecture to learn a continuous **Latent Space**, where signs with the same semantic meaning are clustered together, and different signs are separated. This approach overcomes the limitations of traditional classification in low-resource environments.
+
+> 📄 **Project Presentation:** For a detailed overview of the research, methodology, and results, check the [**Final Project Poster**](RepresentatioHorarum/Poster%20Finalv04.pdf).
 
 ---
 
-## 💽 The core components of our intelligent CSLR system include:
+## 🤖 Introduction to the Intelligent Agent
 
-- **Autoencoder (AE)**: Learns compressed representations of sign language video sequences
+**Artificial Intelligence (AI)** enables systems to perceive complex patterns and reason about them. In this project, the **Sign Language Analysis System** is modeled as an **Intelligent Agent** that processes visual sequences of signs:
 
-- **3D Convolutional Networks**: Extract spatial and temporal features from video data
+- **Perception** → The agent receives sign language data (video sequences or keypoints) and processes them through a neural encoder.
+- **Reasoning** → It projects these inputs into a **Latent Space** optimized by two complementary forces:
+    1.  **Reconstruction**: Ensuring the essential features of the sign are preserved.
+    2.  **Contrast**: Ensuring signs of the same class are geometrically close, while different signs are pushed apart.
+- **Representation** → The agent builds a robust semantic map of signs, allowing for accurate recognition even with few training examples.
 
-- **Bidirectional GRU**: Processes temporal sequences in both directions for better context understanding
-
-- **Multi-dataset Support**: Handles different sign language datasets with unified preprocessing
-
-- This architecture transforms raw video input into meaningful embeddings with their gloss label, enabling understanding of continuous sign language words in different languages
+This structure solves the problem of high-dimensional video data by reducing it to a meaningful, compact vector representation.
 
 ---
 
 ## 🚀 Features
 
-📹 **Video Sequence Processing**: Handles video input for continuous sign language recognition in a word level
-
-🎯 **Data Preprocessing**: Clear pipeline for video sequence normalization and labeling
-
-🧠 **Deep Learning Architecture**: Combines 3D CNNs with bidirectional GRU networks
-
-🔄 **Autoencoder Framework**: Learns efficient representations of sign language patterns through pretext tasks
-
-📊 **Multi-dataset Support**: Compatible with WLASL, ISL, and SLOVO datasets
-
-🏷️ **Gloss Analisis**: Creates a visual representation of the behavior of each gloss for video sequences
-
-📈 **Temporal Evaluation**: Comprehensive metrics and temporal sensitivity analysis
+- 🤟 **Sign Language Recognition**: Specialized in analyzing isolated words in Sign Language.
+- 🧠 **Hybrid Loss Architecture**: Combines **Reconstruction Loss** (Autoencoder style) with **Contrastive/Triplet Loss** for superior embedding quality.
+- 📉 **Limited Data Optimized**: Specifically engineered to perform well without massive datasets.
+- ⏱️ **Temporal Dynamics Validation**: Robustness tested against temporal distortions (Inverted, Permuted, Shifted).
+- 📊 **Semantic Separation Metric**: Implements a custom metric to measure the ratio between inter-class distance and intra-class compactness.
+- 🗺️ **Latent Space Visualization**: Uses **UMAP** and **PCA** to visualize how the model clusters signs in 2D/3D space.
+- 📄 **Academic Rigor**: Based on the thesis *"Desarrollo de Técnica Reconstructiva y Contrastiva para el análisis de Palabras en Lenguajes de Señas"*.
 
 ---
 
-## 🧠 Technical Architecture
+## 💻 Code Workflow
 
-### Core Components
+The repository is organized to handle the pipeline from data ingestion to latent space evaluation.
 
-- 3D Convolutional Autoencoder
+### **Data & Preprocessing**
+- **Data Loading**: Scripts to ingest sign language datasets (e.g., LSE_Lex40 or custom datasets).
+- **Feature Engineering**: Normalization and formatting of input sequences for the model.
 
- - Learns compressed representations of video sequences
- - Processes spatial and temporal dimensions simultaneously
- - Captures motion patterns in sign language gestures
+### **Model Architecture (`Modelo1Idioma.ipynb`)**
+- **Encoder-Decoder**: A core structure that learns to compress and reconstruct the input data.
+- **Projection Head**: Maps the encoded features to the metric space for contrastive learning.
 
-- Bidirectional GRU Network
-
-  - Processes temporal sequences in forward and backward directions
-  - Maintains context from both past and future states
-  - Enhances classification accuracy for continuous signing
-
-- Multi-variant Processing
-
-  - Generates 5 variants of each video sequence for robustness
-  - Data augmentation techniques for improved generalization
-  - Help organize the sequence in a latent space using triplet loss
+### **Training & Evaluation**
+- **Hybrid Training Loop**: Optimizes weights using a weighted sum of Reconstruction Error and Contrastive/Triplet Loss.
+- **Metrics**: Tracks the **Semantic Separation Ratio** to validate the quality of the clusters.
+- **Visualization**: Generates UMAP plots to visually confirm the separation of different sign classes.
 
 ---
 
-## 📋 Dataset Support
+## 🧩 How It Works
 
-### WLASL Dataset
+1.  **Input**: The system accepts a sequence representing a sign (word).
+2.  **Encoding**: The neural network compresses this high-dimensional input into a low-dimensional feature vector (embedding).
+3.  **Dual Optimization**:
+    - The **Reconstruction** branch tries to recreate the original input from this vector (ensuring data integrity).
+    - The **Contrastive** branch compares this vector with others (Anchor, Positive, Negative) to adjust its position in space.
+4.  **Latent Space Formation**: Over time, the model organizes the space so that all instances of the word "Hello" are close together, and far from "Goodbye".
 
-- American Sign Language (ASL) video collection
-- Structured JSON metadata with gloss labels
-- Multiple video files with standardized naming convention
+### **Model Architecture Summary**
+The following diagram illustrates the hybrid architecture and how data flows through the reconstructive and contrastive blocks:
 
-### ISL Dataset
-
-- Indian Sign Language video sequences
-- Custom format requiring preprocessing adaptation
-- More videos but less glosses
-
-### SLOVO Dataset
-
-- Slovenian Sign Language recordings
-- Russian-origin data requiring translation and adaptation
-- Special preprocessing for language-specific features
+![Model Summary](Representatio_Horarum/Images/Imagenes%20Cap%202/ResumenMod.PNG)
 
 ---
 
-## 🔧 Data Preprocessing Pipeline
+## 🧠 Algorithm Summary
 
-### 1. Data Restructuring
+### **Triplet & Contrastive Mechanism**
+A key component of this project is the use of **Metric Learning**. Instead of just memorizing labels, the model learns the *concept* of similarity.
 
-- Converts various dataset formats into unified H5 structure
-- Standardizes video sequences with consistent frame dimensions
-- Normalizes temporal sequences to fixed length
-  
-### 2. Label Translation
+The training relies on **Triplets**:
+- **Anchor (A)**: A reference instance of a specific sign.
+- **Positive (P)**: Another instance of the *same* sign (e.g., same word, different signer).
+- **Negative (N)**: An instance of a *different* sign.
 
-- Automatic translation of non-English gloss labels
-- Manual verification of translation accuracy
-- JSON mapping for language-specific terms
+**The Goal:**
+The network minimizes the distance $d(A, P)$ while maximizing $d(A, N)$ by a margin $\alpha$. This creates the semantic clusters shown below:
 
-### 3. Sequence Normalization
+![Triplet Loss Diagram](Representatio_Horarum/Images/Imagenes%20Cap%202/GrafTriplet.png)
 
-- Resizes frames to standardized dimensions (120x160)
-- Normalizes sequence length
-- Handles aspect ratio preservation and quality enhancement
+### **Reconstruction Support**
+Simultaneously, the model minimizes the **Reconstruction Error** ($L_{recon}$). This acts as a regularizer, preventing the model from "cheating" the contrastive task by collapsing the latent space into meaningless points.
 
-### 4. Background Processing
+### **Temporal Learning Verification**
+To confirm that the model understands the **temporal order** of signs (and doesn't just treat them as static images), the architecture was validated using specific variations of the input sequences:
 
-- Background removal for improved feature extraction using YOLOv8
-- Focus on signer silhouette and gesture patterns
-- Enhanced contrast and clarity adjustments
+1.  **Shifted (Corrida)**: A slight temporal displacement of the original video. The model correctly identifies this as **semantically closest** to the original.
+2.  **Inverted (Invertida)**: The video sequence played backwards.
+3.  **Permuted (Permutada)**: The frames of the video shuffled randomly. The model identifies this as the **farthest** distance, proving that the **order of frames matters** for the learned representation.
 
----
-
-## 🏗️ Implementation Structure
-
-### Model Architecture
-
-Input Video Sequence (N x F x 120 x 160 x 1)
-    ↓
-3D Convolutional Autoencoder
-    ↓
-Compressed Feature Representation
-    ↓
-Bidirectional GRU Processing
-    ↓
-Temporal Context Integration
-    ↓
-Gloss Visualization Output
-
-### Training Components
-
-- **Reconstruction Loss**: Ensures accurate video sequence reconstruction
-- **Triplet Loss (Inter-gloss)**: Separates different gloss by areas in a latent space
-- **Triplet Loss (Temporal)**: Maintains temporal consistency
-- **Combined Loss Function**: Weighted combination of all loss terms
+This hierarchy of distances ($d_{shifted} < d_{inverted} < d_{permuted}$) confirms the agent effectively learns temporal dynamics.
 
 ---
 
-## 📊 Performance Metrics
+## 🧪 Conclusions
 
-### Training Metrics
+Based on the experimental results documented in the final report:
 
-- Total Loss (combined reconstruction and classification)
-- Reconstruction Loss (video sequence accuracy)
-- Inter-gloss Triplet Loss (category separation)
-- Temporal Triplet Loss (sequence consistency)
-
-### Evaluation Metrics
-
-- Cosine distance and L2 distance
-- Temporal sensitivity analysis
-- Cross-dataset performance comparison
-- Per-sequence agrupation clusters analysis
+1.  **Temporal Awareness**: The model successfully encodes temporal dynamics. It differentiates between original sequences and their permuted/inverted variants, confirming it understands the "flow" of a sign, not just individual hand shapes.
+2.  **Superiority over Baseline**: The proposed Reconstructive-Contrastive technique consistently outperforms linear dimensionality reduction methods (like PCA) in separating semantic classes.
+3.  **Viability for Limited Data**: The hybrid loss approach allows the model to construct structured latent spaces even with small datasets, making it suitable for low-resource environments.
+4.  **Data Sensitivity**: The quality of the latent space is heavily dependent on dataset consistency (camera angles, resolution). Future work suggests integrating attention mechanisms to further improve robustness against noise.
 
 ---
 
-## 🔬 Experimental Results
+## 🔧 Hardware & Software Requirements
 
-The system has been evaluated across multiple datasets with 2 and 3 glosses where each experiment includes:
-
-- Training progression analysis with a graph for each loss
-- Temporal sensitivity evaluation with Cosine and L2 distances
-- Performance comparison tables and bar graphs between training and validation values
+- **Language**: Python 3.10+
+- **Deep Learning Framework**: TensorFlow / Keras
+- **Libraries**:
+    - `umap-learn` (Dimensionality reduction for visualization)
+    - `scikit-learn` (PCA and metrics)
+    - `numpy`, `pandas` (Data manipulation)
+    - `matplotlib` (Plotting results)
+- **Hardware**:
+    - GPU support is highly recommended for training the Encoder-Decoder architecture.
 
 ---
 
 ## 👨‍💻 Author
 
-Project created by **Daniel Bernal**
+Developed by **Daniel Camilo Bernal Ternera**.
+*Universidad Sergio Arboleda – School of Exact Sciences and Engineering.*
+
+For detailed inquiries or collaboration, please refer to the repository issues section.
