@@ -39,7 +39,7 @@ This structure solves the problem of high-dimensional video data by reducing it 
 The repository is organized to handle the pipeline from data ingestion to latent space evaluation.
 
 ### **Data & Preprocessing**
-- **Data Loading**: Scripts to ingest sign language datasets (e.g., LSE_Lex40 or custom datasets).
+- **Data Loading**: Scripts to ingest sign language datasets (In this case WLSL_v03, ISL, SLOVO).
 - **Feature Engineering**: Normalization and formatting of input sequences for the model.
 
 ### **Model Architecture (`Modelo1Idioma.ipynb`)**
