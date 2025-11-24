@@ -41,9 +41,12 @@ The repository is organized to handle the pipeline from data ingestion to latent
 ### **Data & Preprocessing**
 - **Data Loading**: Scripts to ingest sign language datasets (In this case WLSL_v03, ISL, SLOVO).
 - **Feature Engineering**: Normalization and formatting of input sequences for the model removing the background.
+
+
 ![Sec1](Representatio_Horarum/Images/Imagenes%20Cap%201/EvolucionSecISL.PNG)
 ![Sec2](Representatio_Horarum/Images/Imagenes%20Cap%201/EvolucionSecSLOVO.PNG)
 ![Sec3](Representatio_Horarum/Images/Imagenes%20Cap%201/EvolucionSecWLSL.PNG)
+
 
 ## 🧩 Code Workflow
 
