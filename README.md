@@ -40,27 +40,39 @@ The repository is organized to handle the pipeline from data ingestion to latent
 
 ### **Data & Preprocessing**
 - **Data Loading**: Scripts to ingest sign language datasets (In this case WLSL_v03, ISL, SLOVO).
-- **Feature Engineering**: Normalization and formatting of input sequences for the model.
+- **Feature Engineering**: Normalization and formatting of input sequences for the model removing the background.
+![Sec1](Representatio_Horarum/Images/Imagenes%Cap%1/EvolucionSecISL.PNG)
+![Sec1](Representatio_Horarum/Images/Imagenes%Cap%1/EvolucionSecSLOVO.PNG)
+![Sec1](Representatio_Horarum/Images/Imagenes%Cap%1/EvolucionSecWLSL.PNG)
 
-### **Model Architecture (`Modelo1Idioma.ipynb`)**
-- **Encoder-Decoder**: A core structure that learns to compress and reconstruct the input data.
-- **Projection Head**: Maps the encoded features to the metric space for contrastive learning.
+## 🧩 Code Workflow
+
+The core logic of the project is defined by the interaction between the neural architecture and the evaluation strategy.
+
+### **Model Architecture**
+- **Self Supervised Learning**: The model utilizes a hybrid learning paradigm. It learns representations by reconstructing the input (self-supervised task) while simultaneously organizing the latent space using contrastive constraints, reducing the dependency on massive frame labeled datasets.
+- **Autoencoder**: Serves as the backbone of the agent getting the features of each video.
+  - **Encoder**: Compresses the input video sequence into a compact latent vector.
+  - **Decoder**: Reconstructs the original video from this vector. This ensures that the embedding retains critical semantic information and isn't just optimizing for separation.
+- **Convolutional 3d layers (C3D)**: Located at the start of the encoder, these layers extract spatiotemporal features from the video volume. They capture both the visual shape of the hands and their movement across frames simultaneously.
+- **GRU - Bidirectional Network**: A Gated Recurrent Unit (Bidirectional) processes the sequence of features extracted by the C3D layers (Encoder). By processing the data in both forward and backward directions, it captures long-range temporal dependencies and the full context of the sign's motion.
+- **Evaluated with triplet loss**: The final latent representation is optimized using Triplet Loss. This function selects an Anchor, a Positive (same sign), and a Negative (different sign) to enforce a geometric structure where similar signs are clustered and dissimilar ones are pushed apart. As is seen ahead in the **Model Architecture Summary**, there a different combination of triplets for each loss.
 
 ### **Training & Evaluation**
-- **Hybrid Training Loop**: Optimizes weights using a weighted sum of Reconstruction Error and Contrastive/Triplet Loss.
-- **Metrics**: Tracks the **Semantic Separation Ratio** to validate the quality of the clusters.
-- **Visualization**: Generates UMAP plots to visually confirm the separation of different sign classes.
+- **Diferent Losses**: The model optimizes a weighted multi-objective loss function having the **Reconstruction Loss (MSE)**, **inter_gloss_loss**, **temporal_inv_triplet_loss**, **temporal_perm_triplet_loss** and **temporal_inv_perm_loss**
+- **Metrics**: **L2 (Euclidean)** and **Cosine Distance** are used to evaluate the embedding quality. Crucially, they validate the model's **Temporal Awareness** by confirming the hierarchy of distances: *Shifted (Closest) < Inverted < Permuted (Farthest)*.
+- **Visualization**: **UMAP** and **PCA** are the primary tools used to visualize the learned manifold, revealing how the model groups complex sign variations into distinct clusters, compared against a linear, a simple model, and a random weighted model baselines.
 
 ---
 
 ## 🧩 How It Works
 
-1.  **Input**: The system accepts a sequence representing a sign (word).
-2.  **Encoding**: The neural network compresses this high-dimensional input into a low-dimensional feature vector (embedding).
+1.  **Input**: The model gets one or multiple datasets of various sequences representing words.
+2.  **Encoding**: The neural network compresses this high-dimensional input into a low-dimensional feature vector for the sequences (embeddings).
 3.  **Dual Optimization**:
     - The **Reconstruction** branch tries to recreate the original input from this vector (ensuring data integrity).
-    - The **Contrastive** branch compares this vector with others (Anchor, Positive, Negative) to adjust its position in space.
-4.  **Latent Space Formation**: Over time, the model organizes the space so that all instances of the word "Hello" are close together, and far from "Goodbye".
+    - The **Contrastive** branch compares this vector with others and its variations (Anchor, Positive, Negative) to adjust its position in space.
+4.  **Latent Space Formation**: Over time, in the best case, the model organizes the space so that all instances of the word "Hello" are close together, and far from "Goodbye".
 
 ### **Model Architecture Summary**
 The following diagram illustrates the hybrid architecture and how data flows through the reconstructive and contrastive blocks:
@@ -107,6 +119,8 @@ Based on the experimental results documented in the final report:
 3.  **Viability for Limited Data**: The hybrid loss approach allows the model to construct structured latent spaces even with small datasets, making it suitable for low-resource environments.
 4.  **Data Sensitivity**: The quality of the latent space is heavily dependent on dataset consistency (camera angles, resolution). Future work suggests integrating attention mechanisms to further improve robustness against noise.
 
+> 📄 **Final document:** For a complete view of the research, methodology, and results (all experiments with different datasets), check the [**Final Project Document**](RepresentatioHorarum/main.pdf).
+
 ---
 
 ## 🔧 Hardware & Software Requirements
@@ -120,6 +134,8 @@ Based on the experimental results documented in the final report:
     - `matplotlib` (Plotting results)
 - **Hardware**:
     - GPU support is highly recommended for training the Encoder-Decoder architecture.
+- **Software**:
+    - This project was made with AWS SageMaker notebooks, saving the information in S3 buckets.
 
 ---
 
@@ -127,5 +143,3 @@ Based on the experimental results documented in the final report:
 
 Developed by **Daniel Camilo Bernal Ternera**.
 *Universidad Sergio Arboleda – School of Exact Sciences and Engineering.*
-
-For detailed inquiries or collaboration, please refer to the repository issues section.
